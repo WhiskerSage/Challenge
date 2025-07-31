@@ -59,17 +59,30 @@ GAMMA = 0.99           # 奖励折扣因子
 LR_ACTOR = 0.0001      # Actor网络的学习率 (原0.0003)
 LR_CRITIC = 0.0003     # Critic网络的学习率 (原0.001)
 
-# --- 奖励函数权重（优化初期训练）---
-REWARD_DETECT = 200.0      # 成功探测到新目标的奖励（持续10秒）
-REWARD_EXPLORE = 1.0       # 探索新网格的奖励（提高探索激励）
-REWARD_EFFICIENT_SEARCH = 20.0  # 高效搜索奖励
-REWARD_TIME_STEP = -0.01   # 每个时间步的惩罚（降低以避免过度负奖励）
-REWARD_COLLISION = -20.0     # 碰撞惩罚（降低以避免过度惩罚）
-REWARD_OUT_OF_BOUNDS = -10.0 # 出界惩罚（降低）
-REWARD_COORDINATION = 50.0   # 协同探测奖励
+# --- 奖励函数权重（基于比赛目标优化）---
+# 核心目标：优先检测边界和高速目标
+REWARD_DETECT = 200.0      # 基础检测奖励
+REWARD_BOUNDARY_TARGET = 300.0    # 边界目标额外奖励（距边界<200米）
+REWARD_HIGH_SPEED_TARGET = 250.0  # 高速目标额外奖励（>10节）
+REWARD_EARLY_DETECTION = 150.0    # 早期发现奖励（<5分钟）
+REWARD_COORDINATION_DETECT = 100.0 # 协同探测奖励（多智能体同时探测）
+
+# 搜索和探索奖励
+REWARD_EXPLORE = 1.0       # 探索新网格的奖励
+REWARD_EFFICIENT_SEARCH = 20.0  # 高效搜索奖励（探索其他智能体未访问区域）
+REWARD_COVERAGE_EFFICIENCY = 15.0  # 覆盖效率奖励
 REWARD_AREA_COVERAGE = 10.0  # 区域覆盖奖励
-REWARD_APPROACHING_TARGET = 0.5 # 新增：接近目标的奖励
-REWARD_MOVEMENT = 0.05       # 新增：移动激励奖励
+
+# 行为激励奖励
+REWARD_APPROACHING_TARGET = 2.0 # 接近目标的奖励（增强）
+REWARD_MOVEMENT = 0.1       # 移动激励奖励（增强探索）
+REWARD_TARGET_TRACKING = 5.0 # 新增：持续跟踪可疑目标奖励
+
+# 惩罚项（适度调整避免过度惩罚）
+REWARD_TIME_STEP = -0.01   # 每个时间步的惩罚
+REWARD_COLLISION = -30.0     # 碰撞惩罚（提高安全重要性）
+REWARD_OUT_OF_BOUNDS = -15.0 # 出界惩罚
+REWARD_INEFFICIENT_SEARCH = -5.0 # 新增：重复搜索已覆盖区域的惩罚
 
 # --- 探索网格参数 ---
 EXPLORATION_GRID_SIZE = 200 # 网格大小（米）

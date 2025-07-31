@@ -3,7 +3,7 @@ import numpy as np
 import config
 
 class Agent:
-    """所有智能体的基类"""
+    """所有智能体的基类（增强协同功能）"""
     def __init__(self, agent_id, initial_pos, max_speed, turn_radius, collision_radius):
         self.id = agent_id
         self.initial_pos = np.array(initial_pos, dtype=float)
@@ -15,12 +15,86 @@ class Agent:
         self.min_turn_radius = turn_radius
         self.collision_radius = collision_radius
 
-        # 移除：路径点管理
-        # self.waypoints = []
-        # self.current_waypoint_index = 0
-
-    # 移除：set_waypoints
-    # 移除：get_current_waypoint
+        # 协同机制增强
+        self.coordination_role = 'searcher'  # 'searcher', 'tracker', 'interceptor'
+        self.shared_target_info = {}   # 共享目标信息 {target_id: {'pos', 'speed', 'priority', 'last_seen'}}
+        self.communication_range = 2000  # 通信范围（米）
+        self.last_target_update = 0  # 最后更新目标信息的时间
+        
+    def update_coordination_info(self, other_agents, targets, current_time):
+        """
+        更新协同信息 - 参考传统算法的信息共享机制
+        """
+        # 清理过时的目标信息
+        for target_id in list(self.shared_target_info.keys()):
+            if current_time - self.shared_target_info[target_id]['last_seen'] > 60:  # 60秒过时
+                del self.shared_target_info[target_id]
+        
+        # 与通信范围内的其他智能体共享信息
+        for other_agent in other_agents:
+            if other_agent.id != self.id:
+                distance = np.linalg.norm(self.pos - other_agent.pos)
+                if distance <= self.communication_range:
+                    # 共享目标信息
+                    for target_id, info in other_agent.shared_target_info.items():
+                        if (target_id not in self.shared_target_info or 
+                            info['last_seen'] > self.shared_target_info[target_id]['last_seen']):
+                            self.shared_target_info[target_id] = info.copy()
+        
+        # 更新自己看到的目标信息
+        for target in targets:
+            if self._can_detect_target(target):
+                target_speed = np.linalg.norm(target.velocity) if hasattr(target, 'velocity') else 0
+                boundary_dist = min(
+                    target.pos[0] - 0, 9260 - target.pos[0],  # 假设区域大小
+                    target.pos[1] - 0, 9260 - target.pos[1]
+                )
+                priority = (target_speed / 15.0) * 0.6 + max(0, (200 - boundary_dist) / 200) * 0.4
+                
+                self.shared_target_info[target.id] = {
+                    'pos': target.pos.copy(),
+                    'velocity': target.velocity.copy() if hasattr(target, 'velocity') else np.array([0, 0]),
+                    'speed': target_speed,
+                    'priority': priority,
+                    'last_seen': current_time,
+                    'detected_by': self.id
+                }
+    
+    def _can_detect_target(self, target):
+        """简化的目标检测判断"""
+        distance = np.linalg.norm(self.pos - target.pos)
+        return distance <= self.sensor_range if hasattr(self, 'sensor_range') else False
+    
+    def get_coordination_role(self, targets, other_agents):
+        """
+        根据当前情况动态分配协同角色
+        参考传统算法的任务分配策略
+        """
+        # 如果有高优先级目标，优先分配跟踪角色
+        high_priority_targets = [
+            tid for tid, info in self.shared_target_info.items() 
+            if info['priority'] > 0.7 and info['last_seen'] > self.last_target_update - 30
+        ]
+        
+        if high_priority_targets and self.coordination_role != 'tracker':
+            # 检查是否有其他智能体已在跟踪
+            other_trackers = [a for a in other_agents if a.coordination_role == 'tracker']
+            if len(other_trackers) < len(high_priority_targets):
+                self.coordination_role = 'tracker'
+                return
+                
+        # 如果是USV且有检测到的目标，切换到拦截模式
+        if isinstance(self, USV):
+            detected_targets = [
+                tid for tid, info in self.shared_target_info.items()
+                if info['last_seen'] > self.last_target_update - 15  # 15秒内的信息
+            ]
+            if detected_targets:
+                self.coordination_role = 'interceptor'
+                return
+        
+        # 默认搜索模式
+        self.coordination_role = 'searcher'
 
     def reset(self):
         self.pos = np.copy(self.initial_pos)

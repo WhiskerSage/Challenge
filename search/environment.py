@@ -32,8 +32,8 @@ class UsvUavEnv(gym.Env):
             self.action_space = spaces.Discrete(11)
     
         # 2. 定义扩展的观测空间 (Observation Space)
-        # 自身状态(6) + 最近目标(9) + 其他智能体(20) + 探索状态(9) = 44维
-        obs_dim = 6 + 9 + 20 + 9  # 根据实际智能体数量调整
+        # 自身状态(6) + 最近目标信息(15) + 其他智能体(20) + 探索状态(9) + 目标优先级(3) + 协同信息(4) = 57维
+        obs_dim = 6 + 15 + 20 + 9 + 3 + 4  # 增加协同信息
         self.observation_space = spaces.Box(low=-1.0, high=1.0, shape=(obs_dim,), dtype=np.float32)
         
         # 3. 初始化pygame用于可视化（可选）
@@ -73,8 +73,8 @@ class UsvUavEnv(gym.Env):
 
     def _spawn_targets(self, max_to_spawn=2):
         """
-        在边界随机生成目标，严格遵守数量限制。
-        :param max_to_spawn: 本次调用最多生成的目标数量。
+        基于课程学习策略生成目标
+        融合传统算法的边界目标优先策略
         """
         # 计算当前可以生成的名额
         num_can_spawn = max_to_spawn - self._count_targets_on_edge()
@@ -82,22 +82,41 @@ class UsvUavEnv(gym.Env):
             return
 
         for _ in range(np.random.randint(1, num_can_spawn + 1)):
-            # 随机选择一个边界 (0:上, 1:右, 2:下, 3:左)
-            edge = np.random.randint(4)
-            if edge == 0: # 上边
-                pos = [np.random.uniform(0, config.AREA_WIDTH_METERS), config.AREA_HEIGHT_METERS - 1]
-                heading = np.random.uniform(-np.pi * 0.75, -np.pi * 0.25) # 朝向下方
-            elif edge == 1: # 右边
-                pos = [config.AREA_WIDTH_METERS - 1, np.random.uniform(0, config.AREA_HEIGHT_METERS)]
-                heading = np.random.uniform(np.pi * 0.75, np.pi * 1.25) # 朝向左方
-            elif edge == 2: # 下边
-                pos = [np.random.uniform(0, config.AREA_WIDTH_METERS), 1]
-                heading = np.random.uniform(np.pi * 0.25, np.pi * 0.75) # 朝向上方
-            else: # 左边
-                pos = [1, np.random.uniform(0, config.AREA_HEIGHT_METERS)]
-                heading = np.random.uniform(-np.pi * 0.25, np.pi * 0.25) # 朝向右方
+            # 根据课程学习参数确定目标类型
+            boundary_prob = getattr(config, 'TARGET_BOUNDARY_PROB', 0.5)
+            speed_range = getattr(config, 'TARGET_SPEED_RANGE', (5, 15))
+            
+            if np.random.random() < boundary_prob:
+                # 边界目标生成
+                edge = np.random.randint(4)
+                if edge == 0: # 上边
+                    pos = [np.random.uniform(0, config.AREA_WIDTH_METERS), config.AREA_HEIGHT_METERS - 50]
+                    heading = np.random.uniform(-np.pi * 0.75, -np.pi * 0.25) # 朝向下方
+                elif edge == 1: # 右边
+                    pos = [config.AREA_WIDTH_METERS - 50, np.random.uniform(0, config.AREA_HEIGHT_METERS)]
+                    heading = np.random.uniform(np.pi * 0.75, np.pi * 1.25) # 朝向左方
+                elif edge == 2: # 下边
+                    pos = [np.random.uniform(0, config.AREA_WIDTH_METERS), 50]
+                    heading = np.random.uniform(np.pi * 0.25, np.pi * 0.75) # 朝向上方
+                else: # 左边
+                    pos = [50, np.random.uniform(0, config.AREA_HEIGHT_METERS)]
+                    heading = np.random.uniform(-np.pi * 0.25, np.pi * 0.25) # 朝向右方
+            else:
+                # 中心区域目标
+                pos = [
+                    np.random.uniform(config.AREA_WIDTH_METERS * 0.2, config.AREA_WIDTH_METERS * 0.8),
+                    np.random.uniform(config.AREA_HEIGHT_METERS * 0.2, config.AREA_HEIGHT_METERS * 0.8)
+                ]
+                heading = np.random.uniform(0, 2 * np.pi)
+            
+            # 根据课程学习设置速度
+            speed_knots = np.random.uniform(*speed_range)
+            speed_mps = speed_knots * config.KNOTS_TO_MPS
+            velocity = [speed_mps * np.cos(heading), speed_mps * np.sin(heading)]
                 
             target = Target(f"tgt_{self.next_target_id}", pos, heading)
+            target.velocity = np.array(velocity)
+            target.spawn_time = self.current_time  # 记录生成时间
             self.targets.append(target)
             self.next_target_id += 1
     
@@ -188,6 +207,11 @@ class UsvUavEnv(gym.Env):
             if agent.id in actions:
                 agent.move(actions[agent.id], config.SIM_TIME_STEP)
         
+        # 1.5 更新协同信息（新增）
+        for agent in self.agents:
+            agent.update_coordination_info(self.agents, self.targets, self.current_time)
+            agent.get_coordination_role(self.targets, self.agents)
+        
         # 2. 更新目标位置，并移除出界的
         for target in self.targets:
             target.move(config.SIM_TIME_STEP)
@@ -196,8 +220,9 @@ class UsvUavEnv(gym.Env):
                         0 <= t.pos[0] <= config.AREA_WIDTH_METERS and 
                         0 <= t.pos[1] <= config.AREA_HEIGHT_METERS]
         
-        # 随机生成新目标（降低频率）
-        if np.random.rand() < 0.002:  # 从1%降低到0.2%，减少目标生成
+        # 随机生成新目标（使用课程学习策略）
+        generation_rate = getattr(config, 'TARGET_GENERATION_RATE', 0.002)
+        if np.random.rand() < generation_rate:
             self._spawn_targets(max_to_spawn=config.TARGET_MAX_COUNT_AT_ONCE)
 
         # 3. 计算奖励和执行检测
@@ -298,7 +323,7 @@ class UsvUavEnv(gym.Env):
                 coverage_reward = config.REWARD_AREA_COVERAGE * coverage_ratio
                 rewards[agent.id] += coverage_reward
         
-        # --- 3.6 新增：接近目标的奖励 ---
+        # --- 3.6 新增：接近目标的奖励（增强版）---
         active_targets = [t for t in self.targets if not (hasattr(t, 'detection_completed') and t.detection_completed)]
         if active_targets:
             for agent in self.agents:
@@ -318,12 +343,40 @@ class UsvUavEnv(gym.Env):
                     # 如果距离变近，给予奖励
                     if min_dist < prev_dist:
                         rewards[agent.id] += config.REWARD_APPROACHING_TARGET
-                    # 如果距离变远，给予惩罚 (可选，可以先不加)
-                    # else:
-                    #     rewards[agent.id] -= config.REWARD_APPROACHING_TARGET * 0.5
+                        
+                        # 额外奖励：如果是边界或高速目标
+                        boundary_dist = min(
+                            closest_target.pos[0] - 0, 
+                            config.AREA_WIDTH_METERS - closest_target.pos[0],
+                            closest_target.pos[1] - 0, 
+                            config.AREA_HEIGHT_METERS - closest_target.pos[1]
+                        )
+                        target_speed = np.linalg.norm(closest_target.velocity) if hasattr(closest_target, 'velocity') else 0
+                        
+                        if boundary_dist < 200 or target_speed > 5.14:
+                            rewards[agent.id] += config.REWARD_TARGET_TRACKING
 
-                    # 更新当前距离
-                    self.previous_distances[agent.id] = min_dist
+        # --- 3.7 协同行为奖励（新增）---
+        for agent in self.agents:
+            # 角色执行奖励
+            if agent.coordination_role == 'tracker':
+                # 跟踪高优先级目标的奖励
+                high_priority_count = sum(1 for info in agent.shared_target_info.values() 
+                                        if info['priority'] > 0.7)
+                if high_priority_count > 0:
+                    rewards[agent.id] += config.REWARD_TARGET_TRACKING
+            
+            elif agent.coordination_role == 'interceptor':
+                # 拦截模式下接近目标的奖励
+                nearby_targets = sum(1 for info in agent.shared_target_info.values()
+                                   if np.linalg.norm(agent.pos - info['pos']) < 500)  # 500米内
+                if nearby_targets > 0:
+                    rewards[agent.id] += config.REWARD_TARGET_TRACKING * 2
+            
+            # 信息共享奖励
+            shared_info_count = len(agent.shared_target_info)
+            if shared_info_count > 0:
+                rewards[agent.id] += config.REWARD_COVERAGE_EFFICIENCY * min(shared_info_count, 3) / 3
 
         # --- 4. 目标探测逻辑与奖励（修正版：必须持续10秒在探测范围内）---
         successfully_detected_targets = []
@@ -361,7 +414,7 @@ class UsvUavEnv(gym.Env):
                     if timer_key in self.detection_timers:
                         self.detection_timers[timer_key] = 0
         
-        # --- 5. 为成功检测目标的智能体分配奖励 ---
+        # --- 5. 为成功检测目标的智能体分配奖励（增强版）---
         if successfully_detected_targets:
             for target in successfully_detected_targets:
                 participating_agents = []
@@ -370,12 +423,34 @@ class UsvUavEnv(gym.Env):
                     timer_key = (agent.id, target.id)
                     if self.detection_timers.get(timer_key, 0) >= config.DETECTION_SUSTAIN_TIME:
                         participating_agents.append(agent)
+                        
+                        # 基础检测奖励
                         rewards[agent.id] += config.REWARD_DETECT
+                        
+                        # 边界目标额外奖励
+                        boundary_dist = min(
+                            target.pos[0] - 0, 
+                            config.AREA_WIDTH_METERS - target.pos[0],
+                            target.pos[1] - 0, 
+                            config.AREA_HEIGHT_METERS - target.pos[1]
+                        )
+                        if boundary_dist < 200:
+                            rewards[agent.id] += config.REWARD_BOUNDARY_TARGET
+                        
+                        # 高速目标额外奖励
+                        target_speed = np.linalg.norm(target.velocity) if hasattr(target, 'velocity') else 0
+                        if target_speed > 5.14:  # >10节
+                            rewards[agent.id] += config.REWARD_HIGH_SPEED_TARGET
+                        
+                        # 早期发现奖励（5分钟内发现）
+                        detection_time = self.current_time - getattr(target, 'spawn_time', self.current_time - 300)
+                        if detection_time < 300:  # 5分钟
+                            rewards[agent.id] += config.REWARD_EARLY_DETECTION
                 
                 # 如果有多个智能体同时参与检测，给予协同奖励
                 if len(participating_agents) > 1:
                     for agent in participating_agents:
-                        rewards[agent.id] += config.REWARD_COORDINATION
+                        rewards[agent.id] += config.REWARD_COORDINATION_DETECT
                 
                 # 记录检测事件
                 agent_names = [agent.id for agent in participating_agents]
@@ -384,21 +459,56 @@ class UsvUavEnv(gym.Env):
         return rewards, detected_events
     
     def _is_target_in_agent_range(self, agent, target):
-        """检查目标是否在智能体的探测范围内"""
+        """
+        优化的探测范围检查 - 融合传统算法的边界目标增强策略
+        关键改进：
+        1. 边界目标探测范围增强
+        2. 高速目标探测优化
+        3. 动态探测参数调整
+        """
+        # 计算目标到边界的距离
+        boundary_dist = min(
+            target.pos[0] - 0, 
+            config.AREA_WIDTH_METERS - target.pos[0],
+            target.pos[1] - 0, 
+            config.AREA_HEIGHT_METERS - target.pos[1]
+        )
+        
+        # 边界目标探测范围增强（距离边界<200米时增强50%）
+        boundary_boost = 1.0 + max(0, (200 - min(200, boundary_dist)) / 200 * 0.5)
+        
+        # 计算目标速度
+        target_speed = np.linalg.norm(target.velocity) if hasattr(target, 'velocity') else 0
+        
+        # 高速目标探测范围增强（>10节时增强20%）
+        speed_boost = 1.2 if target_speed > 5.14 else 1.0  # 5.14 m/s ≈ 10节
+        
+        # 计算有效探测范围
+        effective_range = agent.sensor_range * boundary_boost * speed_boost
+        
+        # 基础距离检查
         dist = np.linalg.norm(agent.pos - target.pos)
-        if dist > agent.sensor_range:
+        if dist > effective_range:
             return False
         
         if isinstance(agent, UAV):
+            # 无人机扇形探测，对边界和高速目标扩大角度
             vec_agent_target = target.pos - agent.pos
             angle_to_target = np.arctan2(vec_agent_target[1], vec_agent_target[0])
             angle_diff = (angle_to_target - agent.heading + np.pi) % (2 * np.pi) - np.pi
-            if abs(angle_diff) <= (config.UAV_SENSOR_FOV_DEG / 2.0 * np.pi / 180.0):
-                return True
+            
+            # 基础FOV角度
+            base_fov = config.UAV_SENSOR_FOV_DEG / 2.0 * np.pi / 180.0
+            
+            # 边界目标或高速目标扩大FOV角度
+            if boundary_dist < 200 or target_speed > 5.14:
+                enhanced_fov = base_fov * 1.3  # 扩大30%的视场角
+            else:
+                enhanced_fov = base_fov
+                
+            return abs(angle_diff) <= enhanced_fov
         else: # USV
-            return True # 因为前面已经判断过距离了
-        
-        return False
+            return True # USV为圆形探测，已通过距离检查
 
     def _calculate_rewards(self): # 这个函数现在不再直接使用，逻辑已合并
         pass
@@ -518,8 +628,8 @@ class UsvUavEnv(gym.Env):
 
     def _get_observation(self):
         """
-        获取所有智能体的观测数据。
-        这是未来IPPO算法的输入。
+        获取所有智能体的观测数据（增强版）
+        融合传统算法的目标优先级评估
         """
         observations = {}
         for agent in self.agents:
@@ -533,19 +643,40 @@ class UsvUavEnv(gym.Env):
                 np.sin(agent.heading)                      # 航向sin
             ]
             
-            # 2. 最近目标信息 (9维: 3个目标 × 3维信息)
+            # 2. 最近目标信息 (15维: 3个目标 × 5维信息)
             nearest_targets = self._get_nearest_targets(agent, n=3)
             target_obs = []
+            target_priorities = []
+            
             for target in nearest_targets:
                 if target is not None:
                     relative_pos = target.pos - agent.pos
+                    target_speed = np.linalg.norm(target.velocity) if hasattr(target, 'velocity') else 0
+                    
+                    # 计算目标到边界的距离
+                    boundary_dist = min(
+                        target.pos[0] - 0, 
+                        config.AREA_WIDTH_METERS - target.pos[0],
+                        target.pos[1] - 0, 
+                        config.AREA_HEIGHT_METERS - target.pos[1]
+                    )
+                    
+                    # 目标优先级计算（参考传统算法）
+                    speed_priority = target_speed / 15.0  # 归一化到0-1
+                    boundary_priority = max(0, (200 - boundary_dist) / 200)  # 边界优先级
+                    priority = speed_priority * 0.6 + boundary_priority * 0.4
+                    
                     target_obs.extend([
                         relative_pos[0] / 1000,  # 相对x位置(km)
                         relative_pos[1] / 1000,  # 相对y位置(km)
-                        1.0 if target.is_detected else 0.0  # 是否已探测
+                        1.0 if target.is_detected else 0.0,  # 是否已探测
+                        target_speed / 15.0,  # 归一化目标速度
+                        boundary_priority  # 边界优先级
                     ])
+                    target_priorities.append(priority)
                 else:
-                    target_obs.extend([0.0, 0.0, 0.0])  # 无目标时填充0
+                    target_obs.extend([0.0, 0.0, 0.0, 0.0, 0.0])  # 无目标时填充0
+                    target_priorities.append(0.0)
             
             # 3. 其他智能体信息 (20维: 5个其他智能体 × 4维[pos_x, pos_y, vx, vy])
             other_agents_obs = []
@@ -566,8 +697,19 @@ class UsvUavEnv(gym.Env):
             # 4. 探索状态信息 (9维: 3×3邻域网格)
             exploration_obs = self._get_exploration_state(agent)
             
-            # 组合所有观测 (6+9+20+9=44维)
-            full_obs = self_obs + target_obs + other_agents_obs + exploration_obs
+            # 5. 目标优先级信息 (3维: 3个最近目标的优先级)
+            priority_obs = target_priorities
+            
+            # 6. 协同信息 (4维)
+            coordination_obs = [
+                1.0 if agent.coordination_role == 'searcher' else 0.0,
+                1.0 if agent.coordination_role == 'tracker' else 0.0, 
+                1.0 if agent.coordination_role == 'interceptor' else 0.0,
+                len(agent.shared_target_info) / 10.0  # 共享目标数量，归一化到0-1
+            ]
+            
+            # 组合所有观测 (6+15+20+9+3+4=57维)
+            full_obs = self_obs + target_obs + other_agents_obs + exploration_obs + priority_obs + coordination_obs
             observations[agent.id] = np.array(full_obs, dtype=np.float32)
             
         return observations

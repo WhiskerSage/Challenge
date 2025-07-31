@@ -7,31 +7,97 @@ import config
 
 def adjust_difficulty(episode):
     """
-    课程学习：根据训练进度动态调整难度
+    改进的课程学习：根据比赛特点动态调整难度
+    参考传统算法的目标类型分布策略
     """
     if episode < 100:
-        # 初期：更多正奖励，减少惩罚，鼓励探索
+        # 初期：边界目标为主，速度较低，便于学习基础探测
         config.REWARD_TIME_STEP = -0.005
         config.REWARD_EXPLORE = 2.0
         config.REWARD_COLLISION = -10.0
         config.REWARD_OUT_OF_BOUNDS = -5.0
-        print(f"    [Curriculum] Easy mode: Enhanced exploration rewards")
+        
+        # 目标生成参数（新增）
+        config.TARGET_BOUNDARY_PROB = 0.8  # 80%概率生成边界目标
+        config.TARGET_SPEED_RANGE = (3, 8)  # 3-8节速度范围
+        config.TARGET_GENERATION_RATE = 0.02  # 降低生成频率（从0.05降到0.02）
+        
+        print(f"    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强")
+        
     elif episode < 300:
-        # 中期：标准设置
+        # 中期：混合目标类型，逐步增加难度
         config.REWARD_TIME_STEP = -0.01
         config.REWARD_EXPLORE = 1.0
         config.REWARD_COLLISION = -20.0
         config.REWARD_OUT_OF_BOUNDS = -10.0
+        
+        # 目标生成参数
+        config.TARGET_BOUNDARY_PROB = 0.5  # 50%概率边界目标
+        config.TARGET_SPEED_RANGE = (5, 12)  # 5-12节速度范围
+        config.TARGET_GENERATION_RATE = 0.04  # 适中生成频率
+        
         if episode == 100:
-            print(f"    [Curriculum] Standard mode: Balanced rewards")
+            print(f"    [Curriculum] Medium mode: 目标类型平衡, 速度提升")
+            
     else:
-        # 后期：更严格的要求，追求效率
+        # 后期：高速目标为主，模拟实际比赛条件
         config.REWARD_TIME_STEP = -0.02
         config.REWARD_EXPLORE = 0.8
         config.REWARD_COLLISION = -30.0
         config.REWARD_OUT_OF_BOUNDS = -15.0
+        
+        # 目标生成参数
+        config.TARGET_BOUNDARY_PROB = 0.6  # 60%概率边界目标（实际比赛特点）
+        config.TARGET_SPEED_RANGE = (8, 15)  # 8-15节高速目标
+        config.TARGET_GENERATION_RATE = 0.06  # 适度提高生成频率
+        
         if episode == 300:
-            print(f"    [Curriculum] Hard mode: Efficiency focused")
+            print(f"    [Curriculum] Hard mode: 高速目标主导, 效率优先")
+
+def generate_curriculum_target(env):
+    """
+    基于课程学习参数生成目标
+    """
+    import random
+    
+    # 根据课程设置确定目标类型
+    is_boundary = random.random() < getattr(config, 'TARGET_BOUNDARY_PROB', 0.5)
+    speed_range = getattr(config, 'TARGET_SPEED_RANGE', (5, 15))
+    
+    if is_boundary:
+        # 边界目标生成
+        edge = random.choice(['top', 'bottom', 'left', 'right'])
+        if edge == 'top':
+            pos = [random.uniform(0, config.AREA_WIDTH_METERS), config.AREA_HEIGHT_METERS - 50]
+            heading = random.uniform(-np.pi * 0.75, -np.pi * 0.25)  # 朝向下方
+        elif edge == 'bottom':
+            pos = [random.uniform(0, config.AREA_WIDTH_METERS), 50]
+            heading = random.uniform(np.pi * 0.25, np.pi * 0.75)  # 朝向上方
+        elif edge == 'left':
+            pos = [50, random.uniform(0, config.AREA_HEIGHT_METERS)]
+            heading = random.uniform(-np.pi * 0.25, np.pi * 0.25)  # 朝向右方
+        else:  # right
+            pos = [config.AREA_WIDTH_METERS - 50, random.uniform(0, config.AREA_HEIGHT_METERS)]
+            heading = random.uniform(np.pi * 0.75, np.pi * 1.25)  # 朝向左方
+    else:
+        # 中心区域目标
+        pos = [
+            random.uniform(config.AREA_WIDTH_METERS * 0.2, config.AREA_WIDTH_METERS * 0.8),
+            random.uniform(config.AREA_HEIGHT_METERS * 0.2, config.AREA_HEIGHT_METERS * 0.8)
+        ]
+        heading = random.uniform(0, 2 * np.pi)
+    
+    # 设置速度
+    speed_knots = random.uniform(*speed_range)
+    speed_mps = speed_knots * config.KNOTS_TO_MPS
+    velocity = [speed_mps * np.cos(heading), speed_mps * np.sin(heading)]
+    
+    from agents import Target
+    target = Target(f"target_{len(env.targets)}", pos, heading)
+    target.velocity = np.array(velocity)
+    target.spawn_time = env.current_time
+    
+    return target
 
 def main():
     # 选择动作类型：'discrete' 或 'continuous'  
