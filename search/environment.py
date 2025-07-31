@@ -32,8 +32,8 @@ class UsvUavEnv(gym.Env):
             self.action_space = spaces.Discrete(11)
     
         # 2. 定义扩展的观测空间 (Observation Space)
-        # 自身状态(6) + 最近目标信息(15) + 其他智能体(20) + 探索状态(9) + 目标优先级(3) + 协同信息(4) = 57维
-        obs_dim = 6 + 15 + 20 + 9 + 3 + 4  # 增加协同信息
+        # 自身状态(6) + 最近目标信息(15) + 其他智能体(20) + 探索状态(9) + 目标优先级(3) + 协同信息(4) + 距离信息(1) = 58维
+        obs_dim = 6 + 15 + 20 + 9 + 3 + 4 + 1  # 增加距离起点信息
         self.observation_space = spaces.Box(low=-1.0, high=1.0, shape=(obs_dim,), dtype=np.float32)
         
         # 3. 初始化pygame用于可视化（可选）
@@ -322,6 +322,17 @@ class UsvUavEnv(gym.Env):
                 coverage_ratio = np.sum(self.exploration_grids[agent.id]) / (self.grid_shape[0] * self.grid_shape[1])
                 coverage_reward = config.REWARD_AREA_COVERAGE * coverage_ratio
                 rewards[agent.id] += coverage_reward
+        
+        # --- 3.6 距离起点探索奖励（新增）---
+        for agent in self.agents:
+            # 计算距离起始点的距离
+            distance_from_start = np.linalg.norm(agent.pos - agent.initial_pos)
+            # 归一化到0-1范围，最大距离按对角线长度计算
+            max_distance = np.sqrt(config.AREA_WIDTH_METERS**2 + config.AREA_HEIGHT_METERS**2)
+            normalized_distance = min(distance_from_start / max_distance, 1.0)
+            # 给予距离奖励
+            distance_reward = config.REWARD_DISTANCE_EXPLORATION * normalized_distance
+            rewards[agent.id] += distance_reward
         
         # --- 3.6 新增：接近目标的奖励（增强版）---
         active_targets = [t for t in self.targets if not (hasattr(t, 'detection_completed') and t.detection_completed)]
@@ -708,8 +719,13 @@ class UsvUavEnv(gym.Env):
                 len(agent.shared_target_info) / 10.0  # 共享目标数量，归一化到0-1
             ]
             
-            # 组合所有观测 (6+15+20+9+3+4=57维)
-            full_obs = self_obs + target_obs + other_agents_obs + exploration_obs + priority_obs + coordination_obs
+            # 7. 距离起点信息 (1维)
+            distance_from_start = np.linalg.norm(agent.pos - agent.initial_pos)
+            max_distance = np.sqrt(config.AREA_WIDTH_METERS**2 + config.AREA_HEIGHT_METERS**2)
+            normalized_distance = [min(distance_from_start / max_distance, 1.0)]
+            
+            # 组合所有观测 (6+15+20+9+3+4+1=58维)
+            full_obs = self_obs + target_obs + other_agents_obs + exploration_obs + priority_obs + coordination_obs + normalized_distance
             observations[agent.id] = np.array(full_obs, dtype=np.float32)
             
         return observations

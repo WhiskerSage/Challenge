@@ -72,6 +72,7 @@ REWARD_EXPLORE = 1.0       # 探索新网格的奖励
 REWARD_EFFICIENT_SEARCH = 20.0  # 高效搜索奖励（探索其他智能体未访问区域）
 REWARD_COVERAGE_EFFICIENCY = 15.0  # 覆盖效率奖励
 REWARD_AREA_COVERAGE = 10.0  # 区域覆盖奖励
+REWARD_DISTANCE_EXPLORATION = 3.0  # 新增：距离起始点探索奖励
 
 # 行为激励奖励
 REWARD_APPROACHING_TARGET = 2.0 # 接近目标的奖励（增强）

@@ -116,6 +116,42 @@ def test_coordination():
     print(f"共享目标信息数量: {shared_info}")
     print("应该有智能体切换到tracker或interceptor角色")
 
+def test_distance_exploration():
+    """测试距离起点探索奖励"""
+    print("\n=== 测试距离起点探索奖励 ===")
+    
+    env = UsvUavEnv(action_type='discrete')
+    obs, _ = env.reset()
+    
+    # 手动移动智能体到不同距离
+    agent1 = env.agents[0]  # 保持在起点附近
+    agent2 = env.agents[1]  # 移动到中距离
+    agent3 = env.agents[2]  # 移动到远距离
+    
+    # 设置不同位置
+    agent1.pos = np.array([100, 4500])    # 距离起点很近
+    agent2.pos = np.array([2000, 4500])   # 中等距离
+    agent3.pos = np.array([8000, 4500])   # 远距离
+    
+    # 计算奖励
+    rewards, _ = env._calculate_rewards_and_detections()
+    
+    # 计算预期的距离奖励
+    max_distance = np.sqrt(config.AREA_WIDTH_METERS**2 + config.AREA_HEIGHT_METERS**2)
+    
+    dist1 = np.linalg.norm(agent1.pos - agent1.initial_pos)
+    dist2 = np.linalg.norm(agent2.pos - agent2.initial_pos)
+    dist3 = np.linalg.norm(agent3.pos - agent3.initial_pos)
+    
+    expected_reward1 = config.REWARD_DISTANCE_EXPLORATION * min(dist1 / max_distance, 1.0)
+    expected_reward2 = config.REWARD_DISTANCE_EXPLORATION * min(dist2 / max_distance, 1.0)
+    expected_reward3 = config.REWARD_DISTANCE_EXPLORATION * min(dist3 / max_distance, 1.0)
+    
+    print(f"智能体1距离起点: {dist1:.0f}m, 预期距离奖励: {expected_reward1:.3f}")
+    print(f"智能体2距离起点: {dist2:.0f}m, 预期距离奖励: {expected_reward2:.3f}")
+    print(f"智能体3距离起点: {dist3:.0f}m, 预期距离奖励: {expected_reward3:.3f}")
+    print("远离起点的智能体应该获得更高的距离奖励")
+
 def test_curriculum_learning():
     """测试课程学习"""
     print("\n=== 测试课程学习 ===")
@@ -191,6 +227,7 @@ def main():
         test_reward_system()
         test_observation_space()
         test_coordination()
+        test_distance_exploration()
         test_curriculum_learning()
         run_quick_training_test()
         
@@ -201,6 +238,7 @@ def main():
         print("✅ 观测空间增强 - 增加目标优先级和协同信息")
         print("✅ 协同机制优化 - 智能体角色分配和信息共享")
         print("✅ 课程学习改进 - 渐进式难度调整，符合比赛特点")
+        print("✅ 距离探索奖励 - 鼓励智能体离开起点，扩大搜索范围")
         
     except Exception as e:
         print(f"❌ 测试过程中出现错误: {e}")
