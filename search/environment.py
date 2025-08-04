@@ -119,6 +119,12 @@ class UsvUavEnv(gym.Env):
             target.spawn_time = self.current_time  # 记录生成时间
             self.targets.append(target)
             self.next_target_id += 1
+            
+            # 更新总生成目标计数
+            if hasattr(self, 'total_targets_spawned'):
+                self.total_targets_spawned += 1
+            else:
+                self.total_targets_spawned = len(self.targets)
     
     def _count_targets_on_edge(self, edge_thickness=10.0):
         """计算位于边界附近的目标数量"""
@@ -148,6 +154,14 @@ class UsvUavEnv(gym.Env):
         self.next_target_id = 0
         self.current_time = 0
         self.previous_distances.clear()
+        
+        # 重置优化版终止条件相关变量
+        self.total_targets_spawned = 0
+        self.last_detection_time = 0
+        self.last_detected_count = 0
+        
+        # 新增：智能体区域分工
+        self.agent_zones = {}  # 每个智能体的专责区域
         
         # 重置探索网格 (在agents创建后)
         self.exploration_grids = {agent.id: np.zeros(self.grid_shape) for agent in self.agents}
@@ -182,6 +196,9 @@ class UsvUavEnv(gym.Env):
         
         # 在创建完所有agent后，再初始化依赖agent id的字典
         self.exploration_grids = {agent.id: np.zeros(self.grid_shape) for agent in self.agents}
+        
+        # 智能体区域分工：为每个智能体分配专责区域
+        self._assign_agent_zones()
         
         # 2.5. 为智能体分配搜索区域并生成路径点 (移除)
         # 不再需要，将由强化学习自主决定路径
@@ -231,20 +248,64 @@ class UsvUavEnv(gym.Env):
         # 4. 获取下一步的观测
         observation = self._get_observation()
         
-        # 5. 检查结束条件
+        # 5. 检查结束条件（优化版）
         terminated = False
         truncated = False
         
-        # 添加回合终止条件
-        if self.current_time > 600:  # 10分钟超时
-            truncated = True
+        # 统计检测情况
+        total_targets_spawned = getattr(self, 'total_targets_spawned', len(self.targets))
+        detected_targets = sum(1 for t in self.targets if hasattr(t, 'detection_completed') and t.detection_completed)
+        detection_rate = detected_targets / max(total_targets_spawned, 1)
         
-        # 如果所有当前目标都被检测完成，可以选择终止回合
-        active_targets = [t for t in self.targets if not (hasattr(t, 'detection_completed') and t.detection_completed)]
-        if len(active_targets) == 0 and self.current_time > 60:  # 至少运行1分钟后才能因无目标终止
+        # 无进展检测：记录上次检测时间
+        if not hasattr(self, 'last_detection_time'):
+            self.last_detection_time = 0
+            self.last_detected_count = 0
+        
+        if detected_targets > self.last_detected_count:
+            self.last_detection_time = self.current_time
+            self.last_detected_count = detected_targets
+        
+        # 动态终止条件
+        no_progress_time = self.current_time - self.last_detection_time
+        
+        # 1. 高效完成：检测率达到60%或更高
+        if detection_rate >= 0.6 and self.current_time > 120:  # 至少运行2分钟
+            terminated = True
+            
+        # 2. 无进展终止：连续120秒无新检测
+        elif no_progress_time > 120 and self.current_time > 180:  # 至少运行3分钟后才能无进展终止
+            truncated = True
+            
+        # 3. 时间超限：最大运行5分钟（从10分钟缩短）
+        elif self.current_time > 300:
+            truncated = True
+            
+        # 4. 目标清空：所有生成的目标都被检测完成
+        elif len(self.targets) == 0 and self.current_time > 60:
             terminated = True
         
-        info = {'detected_events': detected_events} # 可以把探测事件等信息放进去
+        # 添加终止原因到info中
+        termination_reason = ""
+        if terminated:
+            if detection_rate >= 0.6:
+                termination_reason = f"high_detection_rate_{detection_rate:.2f}"
+            elif len(self.targets) == 0:
+                termination_reason = "all_targets_cleared"
+        elif truncated:
+            if no_progress_time > 120:
+                termination_reason = f"no_progress_{no_progress_time:.0f}s"
+            else:
+                termination_reason = f"time_limit_{self.current_time:.0f}s"
+        
+        info = {
+            'detected_events': detected_events,
+            'detection_rate': detection_rate,
+            'detected_count': detected_targets,
+            'total_spawned': total_targets_spawned,
+            'termination_reason': termination_reason,
+            'episode_time': self.current_time
+        }
         
         return observation, rewards, terminated, truncated, info
 
@@ -467,7 +528,130 @@ class UsvUavEnv(gym.Env):
                 agent_names = [agent.id for agent in participating_agents]
                 detected_events.append(f"Target {target.id} successfully detected by: {', '.join(agent_names)}")
         
+        # --- 新增：位置多样性和聚集惩罚 ---
+        self._apply_position_diversity_rewards(rewards)
+        
+        # --- 新增：区域专精奖励 ---
+        for agent in self.agents:
+            specialization_reward = self._calculate_area_specialization_reward(agent)
+            rewards[agent.id] += specialization_reward
+        
         return rewards, detected_events
+    
+    def _apply_position_diversity_rewards(self, rewards):
+        """
+        应用位置多样性奖励和聚集惩罚
+        鼓励智能体分散搜索，避免聚集
+        """
+        if len(self.agents) < 2:
+            return
+            
+        # 计算所有智能体之间的距离
+        positions = np.array([agent.pos for agent in self.agents])
+        
+        for i, agent in enumerate(self.agents):
+            diversity_reward = 0
+            clustering_penalty = 0
+            
+            # 与其他智能体的距离
+            other_positions = np.delete(positions, i, axis=0)
+            distances = np.linalg.norm(positions[i] - other_positions, axis=1)
+            
+            # 位置多样性奖励：距离其他智能体越远，奖励越高
+            min_distance = np.min(distances)
+            avg_distance = np.mean(distances)
+            
+            # 多样性奖励：基于最小距离和平均距离
+            diversity_threshold = 1000  # 1000米作为理想间距
+            if min_distance > diversity_threshold:
+                diversity_bonus = min(config.REWARD_POSITION_DIVERSITY, 
+                                    config.REWARD_POSITION_DIVERSITY * (min_distance / diversity_threshold - 1))
+                diversity_reward += diversity_bonus
+            
+            # 聚集惩罚：如果多个智能体聚集在小范围内
+            clustering_threshold = 500  # 500米内算作聚集
+            clustered_agents = np.sum(distances < clustering_threshold)
+            if clustered_agents >= 2:  # 至少2个其他智能体在聚集范围内
+                clustering_penalty = config.REWARD_CLUSTERING_PENALTY * clustered_agents
+            
+            # 应用奖励
+            rewards[agent.id] += diversity_reward + clustering_penalty
+    
+    def _assign_agent_zones(self):
+        """
+        为智能体分配专责搜索区域，提升协同效率
+        根据智能体类型和数量智能分配区域
+        """
+        if not self.agents:
+            return
+            
+        # 将搜索区域划分为网格
+        area_width = config.AREA_WIDTH_METERS
+        area_height = config.AREA_HEIGHT_METERS
+        
+        # 根据智能体数量决定划分方式
+        num_agents = len(self.agents)
+        if num_agents <= 2:
+            # 2个智能体：上下分区
+            zones = [
+                {'min_x': 0, 'max_x': area_width, 'min_y': 0, 'max_y': area_height / 2},
+                {'min_x': 0, 'max_x': area_width, 'min_y': area_height / 2, 'max_y': area_height}
+            ]
+        elif num_agents <= 4:
+            # 4个智能体：四象限分区
+            zones = [
+                {'min_x': 0, 'max_x': area_width / 2, 'min_y': 0, 'max_y': area_height / 2},
+                {'min_x': area_width / 2, 'max_x': area_width, 'min_y': 0, 'max_y': area_height / 2},
+                {'min_x': 0, 'max_x': area_width / 2, 'min_y': area_height / 2, 'max_y': area_height},
+                {'min_x': area_width / 2, 'max_x': area_width, 'min_y': area_height / 2, 'max_y': area_height}
+            ]
+        else:
+            # 6个智能体：3×2网格分区
+            zones = []
+            for i in range(3):  # 3行
+                for j in range(2):  # 2列
+                    zones.append({
+                        'min_x': j * area_width / 2,
+                        'max_x': (j + 1) * area_width / 2,
+                        'min_y': i * area_height / 3,
+                        'max_y': (i + 1) * area_height / 3
+                    })
+        
+        # 为每个智能体分配区域（循环分配）
+        for i, agent in enumerate(self.agents):
+            zone_index = i % len(zones)
+            self.agent_zones[agent.id] = zones[zone_index]
+            
+        print(f"分配了{len(self.agent_zones)}个智能体的专责区域")
+    
+    def _calculate_area_specialization_reward(self, agent):
+        """
+        计算区域专精奖励
+        智能体在自己的专责区域内活动获得奖励
+        """
+        if agent.id not in self.agent_zones:
+            return 0
+            
+        zone = self.agent_zones[agent.id]
+        x, y = agent.pos
+        
+        # 检查是否在专责区域内
+        in_zone = (zone['min_x'] <= x <= zone['max_x'] and 
+                  zone['min_y'] <= y <= zone['max_y'])
+        
+        if in_zone:
+            # 在专责区域内获得奖励
+            return config.REWARD_AREA_SPECIALIZATION
+        else:
+            # 离开专责区域的距离惩罚
+            center_x = (zone['min_x'] + zone['max_x']) / 2
+            center_y = (zone['min_y'] + zone['max_y']) / 2
+            distance_from_zone = np.linalg.norm([x - center_x, y - center_y])
+            
+            # 根据距离计算惩罚（最大惩罚为专精奖励的一半）
+            max_distance = np.linalg.norm([config.AREA_WIDTH_METERS, config.AREA_HEIGHT_METERS]) / 2
+            penalty_ratio = min(distance_from_zone / max_distance, 1.0)
+            return -config.REWARD_AREA_SPECIALIZATION * 0.5 * penalty_ratio
     
     def _is_target_in_agent_range(self, agent, target):
         """
