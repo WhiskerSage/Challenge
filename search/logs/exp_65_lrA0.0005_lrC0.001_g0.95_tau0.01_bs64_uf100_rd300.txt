@@ -1,0 +1,1721 @@
+D:\Anaconda3\envs\lunarlander\lib\site-packages\pygame\pkgdata.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_stream, resource_exists
+D:\Anaconda3\envs\lunarlander\lib\site-packages\gymnasium\spaces\box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+D:\Anaconda3\envs\lunarlander\lib\site-packages\gymnasium\spaces\box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+pygame 2.6.1 (SDL 2.28.4, Python 3.9.23)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+MADDPG训练模式：已禁用可视化渲染以提高训练速度
+使用设备: cpu
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 1 ---
+分配了6个智能体的专责区域
+MADDPG初始化完成: 6个智能体
+    MADDPG UPDATING at time_step 1000...
+    MADDPG UPDATE finished.
+    Step 1000, Episode Steps: 1000, Avg Reward: 14.361, Episode Reward: 14360.7
+    检测进度: 4/23 (17.4%), Episode total: 4
+    智能体位置: [('usv_0', '(242,3100)'), ('usv_1', '(253,4174)'), ('usv_2', '(298,5155)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.378596398837974), 'usv_1': np.float64(3.469698099506658)}
+    Episode time: 100.0s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 2000...
+    MADDPG UPDATE finished.
+    Step 2000, Episode Steps: 2000, Avg Reward: 19.834, Episode Reward: 39668.0
+    检测进度: 5/42 (11.9%), Episode total: 6
+    智能体位置: [('usv_0', '(234,3045)'), ('usv_1', '(231,4213)'), ('usv_2', '(371,5228)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.973083909565492), 'usv_1': np.float64(3.4698113462743017)}
+    Episode time: 200.0s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 1 Summary:
+  Total Reward: 50226.7
+  Targets Detected: 7/47 (12.8%)
+  Steps: 2397
+  Episode Time: 239.7s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 20.95
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 2 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 3000...
+    MADDPG UPDATE finished.
+    Step 3000, Episode Steps: 603, Avg Reward: -0.355, Episode Reward: -214.2
+    检测进度: 1/11 (9.1%), Episode total: 1
+    智能体位置: [('usv_0', '(239,3123)'), ('usv_1', '(238,4133)'), ('usv_2', '(281,5151)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.3706861777044038), 'usv_1': np.float64(1.4689384020662448)}
+    Episode time: 60.3s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 4000...
+    MADDPG UPDATE finished.
+    Step 4000, Episode Steps: 1603, Avg Reward: 2.838, Episode Reward: 4549.8
+    检测进度: 2/35 (5.7%), Episode total: 3
+    智能体位置: [('usv_0', '(227,3087)'), ('usv_1', '(286,4168)'), ('usv_2', '(385,5220)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.37302245407067214), 'usv_1': np.float64(-0.5269798074703274)}
+    Episode time: 160.3s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 2 Summary:
+  Total Reward: 14172.7
+  Targets Detected: 4/43 (7.0%)
+  Steps: 2458
+  Episode Time: 245.8s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 5.77
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 3 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.00758202 -0.03909822] (agent usv_0)
+    MADDPG UPDATING at time_step 5000...
+    MADDPG UPDATE finished.
+    Step 5000, Episode Steps: 145, Avg Reward: -3.162, Episode Reward: -458.5
+    检测进度: 0/3 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(217,3130)'), ('usv_1', '(222,4131)'), ('usv_2', '(223,5130)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6342685015575563), 'usv_1': np.float64(-1.5211927732313986)}
+    Episode time: 14.5s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 6000...
+    MADDPG UPDATE finished.
+    Step 6000, Episode Steps: 1145, Avg Reward: 7.803, Episode Reward: 8934.4
+    检测进度: 3/18 (16.7%), Episode total: 3
+    智能体位置: [('usv_0', '(269,3114)'), ('usv_1', '(274,4151)'), ('usv_2', '(294,5161)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.380744417773582), 'usv_1': np.float64(1.4719637497015143)}
+    Episode time: 114.5s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 7000...
+    MADDPG UPDATE finished.
+    Step 7000, Episode Steps: 2145, Avg Reward: 14.579, Episode Reward: 31271.7
+    检测进度: 6/33 (18.2%), Episode total: 7
+    智能体位置: [('usv_0', '(274,3061)'), ('usv_1', '(286,4201)'), ('usv_2', '(343,5266)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.258816560836834), 'usv_1': np.float64(1.4779409918557795)}
+    Episode time: 214.5s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 3 Summary:
+  Total Reward: 52439.2
+  Targets Detected: 9/39 (17.9%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 17.47
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 4 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 8000...
+    MADDPG UPDATE finished.
+    Step 8000, Episode Steps: 144, Avg Reward: 5.220, Episode Reward: 751.7
+    检测进度: 1/4 (25.0%), Episode total: 1
+    智能体位置: [('usv_0', '(217,3130)'), ('usv_1', '(225,4129)'), ('usv_2', '(228,5130)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.36659282728689635), 'usv_1': np.float64(-0.5287097441159515)}
+    Episode time: 14.4s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 9000...
+    MADDPG UPDATE finished.
+    Step 9000, Episode Steps: 1144, Avg Reward: 9.039, Episode Reward: 10340.4
+    检测进度: 2/17 (11.8%), Episode total: 3
+    智能体位置: [('usv_0', '(257,3118)'), ('usv_1', '(276,4141)'), ('usv_2', '(324,5132)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.377914406521269), 'usv_1': np.float64(1.473062118931828)}
+    Episode time: 114.4s, Time penalty=-0.05
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.18748029 -0.21925604] (agent usv_0)
+    MADDPG UPDATING at time_step 10000...
+    MADDPG UPDATE finished.
+    Step 10000, Episode Steps: 2144, Avg Reward: 12.805, Episode Reward: 27453.8
+    检测进度: 5/35 (14.3%), Episode total: 6
+    智能体位置: [('usv_0', '(264,3073)'), ('usv_1', '(305,4190)'), ('usv_2', '(360,5203)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.21368828730956), 'usv_1': np.float64(-3.520871676757978)}
+    Episode time: 214.4s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 4 Summary:
+  Total Reward: 40367.0
+  Targets Detected: 7/46 (10.9%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 13.45
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 5 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 11000...
+    MADDPG UPDATE finished.
+    Step 11000, Episode Steps: 143, Avg Reward: -3.288, Episode Reward: -470.2
+    检测进度: 0/1 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(216,3129)'), ('usv_1', '(224,4131)'), ('usv_2', '(229,5131)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.634227893312329), 'usv_1': np.float64(-1.523093998613191)}
+    Episode time: 14.3s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 12000...
+    MADDPG UPDATE finished.
+    Step 12000, Episode Steps: 1143, Avg Reward: 5.177, Episode Reward: 5917.7
+    检测进度: 3/17 (17.6%), Episode total: 3
+    智能体位置: [('usv_0', '(256,3111)'), ('usv_1', '(281,4116)'), ('usv_2', '(300,5204)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.3766302190279145), 'usv_1': np.float64(3.473238243608977)}
+    Episode time: 114.3s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 13000...
+    MADDPG UPDATE finished.
+    Step 13000, Episode Steps: 2143, Avg Reward: 12.435, Episode Reward: 26649.2
+    检测进度: 5/33 (15.2%), Episode total: 5
+    智能体位置: [('usv_0', '(263,3062)'), ('usv_1', '(328,4104)'), ('usv_2', '(318,5321)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.05992179435494), 'usv_1': np.float64(3.475121999697244)}
+    Episode time: 214.3s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 5 Summary:
+  Total Reward: 41322.4
+  Targets Detected: 5/44 (6.8%)
+  Steps: 2853
+  Episode Time: 285.3s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 14.48
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 6 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 14000...
+    MADDPG UPDATE finished.
+    Step 14000, Episode Steps: 290, Avg Reward: -3.405, Episode Reward: -987.6
+    检测进度: 0/8 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(229,3127)'), ('usv_1', '(226,4128)'), ('usv_2', '(241,5133)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6324479409010346), 'usv_1': np.float64(-1.5327617318725681)}
+    Episode time: 29.0s, Time penalty=-0.05
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.07811129  0.1101253 ] (agent usv_0)
+    MADDPG UPDATING at time_step 15000...
+    MADDPG UPDATE finished.
+    Step 15000, Episode Steps: 1290, Avg Reward: 0.291, Episode Reward: 375.1
+    检测进度: 1/16 (6.2%), Episode total: 1
+    智能体位置: [('usv_0', '(283,3137)'), ('usv_1', '(265,4136)'), ('usv_2', '(333,5189)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.38006507259231814), 'usv_1': np.float64(-0.528936636760826)}
+    Episode time: 129.0s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 16000...
+    MADDPG UPDATE finished.
+    Step 16000, Episode Steps: 2290, Avg Reward: 4.951, Episode Reward: 11337.3
+    检测进度: 4/23 (17.4%), Episode total: 4
+    智能体位置: [('usv_0', '(332,3135)'), ('usv_1', '(247,4172)'), ('usv_2', '(374,5276)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.395829766203246), 'usv_1': np.float64(-3.5272812610352178)}
+    Episode time: 229.0s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 6 Summary:
+  Total Reward: 17844.6
+  Targets Detected: 4/32 (6.2%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 5.95
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 7 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 17000...
+    MADDPG UPDATE finished.
+    Step 17000, Episode Steps: 289, Avg Reward: 6.988, Episode Reward: 2019.6
+    检测进度: 1/6 (16.7%), Episode total: 1
+    智能体位置: [('usv_0', '(221,3128)'), ('usv_1', '(225,4129)'), ('usv_2', '(228,5133)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.36541753096566154), 'usv_1': np.float64(-0.5298482505343388)}
+    Episode time: 28.9s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 18000...
+    MADDPG UPDATE finished.
+    Step 18000, Episode Steps: 1289, Avg Reward: 5.954, Episode Reward: 7674.2
+    检测进度: 2/28 (7.1%), Episode total: 2
+    智能体位置: [('usv_0', '(226,3098)'), ('usv_1', '(278,4136)'), ('usv_2', '(280,5209)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3739573359601724), 'usv_1': np.float64(0.47127163304756214)}
+    Episode time: 128.9s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 19000...
+    MADDPG UPDATE finished.
+    Step 19000, Episode Steps: 2289, Avg Reward: 8.440, Episode Reward: 19318.8
+    检测进度: 3/42 (7.1%), Episode total: 3
+    智能体位置: [('usv_0', '(207,3070)'), ('usv_1', '(316,4172)'), ('usv_2', '(267,5324)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.167534111667768), 'usv_1': np.float64(-3.5248815619769847)}
+    Episode time: 228.9s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 7 Summary:
+  Total Reward: 29378.1
+  Targets Detected: 4/47 (6.4%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 9.79
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 8 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.06495615 -0.2059241 ] (agent usv_0)
+    MADDPG UPDATING at time_step 20000...
+    MADDPG UPDATE finished.
+    Step 20000, Episode Steps: 288, Avg Reward: -3.235, Episode Reward: -931.7
+    检测进度: 0/9 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(229,3132)'), ('usv_1', '(220,4133)'), ('usv_2', '(243,5130)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6295110397047936), 'usv_1': np.float64(-1.533220606294154)}
+    Episode time: 28.8s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 21000...
+    MADDPG UPDATE finished.
+    Step 21000, Episode Steps: 1288, Avg Reward: 2.930, Episode Reward: 3774.0
+    检测进度: 1/23 (4.3%), Episode total: 1
+    智能体位置: [('usv_0', '(261,3157)'), ('usv_1', '(238,4165)'), ('usv_2', '(347,5177)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.3773914505001652), 'usv_1': np.float64(1.4683957419637572)}
+    Episode time: 128.8s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 22000...
+    MADDPG UPDATE finished.
+    Step 22000, Episode Steps: 2288, Avg Reward: 7.199, Episode Reward: 16472.1
+    检测进度: 4/40 (10.0%), Episode total: 4
+    智能体位置: [('usv_0', '(293,3202)'), ('usv_1', '(244,4205)'), ('usv_2', '(376,5270)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.386306494712986), 'usv_1': np.float64(-1.5304923937755106)}
+    Episode time: 228.8s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 8 Summary:
+  Total Reward: 22421.1
+  Targets Detected: 6/57 (8.8%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 7.47
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 9 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 23000...
+    MADDPG UPDATE finished.
+    Step 23000, Episode Steps: 287, Avg Reward: 5.801, Episode Reward: 1665.0
+    检测进度: 1/6 (16.7%), Episode total: 1
+    智能体位置: [('usv_0', '(223,3131)'), ('usv_1', '(218,4135)'), ('usv_2', '(248,5131)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.3653975198675864), 'usv_1': np.float64(2.467679276261763)}
+    Episode time: 28.7s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 24000...
+    MADDPG UPDATE finished.
+    Step 24000, Episode Steps: 1287, Avg Reward: 16.985, Episode Reward: 21859.2
+    检测进度: 3/19 (15.8%), Episode total: 3
+    智能体位置: [('usv_0', '(272,3102)'), ('usv_1', '(232,4172)'), ('usv_2', '(340,5158)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.383311391408146), 'usv_1': np.float64(3.4731718574980714)}
+    Episode time: 128.7s, Time penalty=-0.05
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.18561178 -0.0990474 ] (agent usv_0)
+    MADDPG UPDATING at time_step 25000...
+    MADDPG UPDATE finished.
+    Step 25000, Episode Steps: 2287, Avg Reward: 20.045, Episode Reward: 45843.1
+    检测进度: 6/35 (17.1%), Episode total: 6
+    智能体位置: [('usv_0', '(277,3065)'), ('usv_1', '(220,4216)'), ('usv_2', '(387,5260)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.180099284928307), 'usv_1': np.float64(3.4680653955686864)}
+    Episode time: 228.7s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 9 Summary:
+  Total Reward: 58216.3
+  Targets Detected: 7/44 (13.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 19.40
+    [Curriculum] Easy mode: 边界目标主导, 低速目标, 探索奖励增强
+--- Episode 10 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 26000...
+    MADDPG UPDATE finished.
+    Step 26000, Episode Steps: 286, Avg Reward: -3.383, Episode Reward: -967.5
+    检测进度: 0/6 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(230,3131)'), ('usv_1', '(235,4130)'), ('usv_2', '(240,5132)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6328605078733945), 'usv_1': np.float64(-1.525716641040289)}
+    Episode time: 28.6s, Time penalty=-0.05
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 27000...
+    MADDPG UPDATE finished.
+    Step 27000, Episode Steps: 1286, Avg Reward: 13.317, Episode Reward: 17125.0
+    检测进度: 4/18 (22.2%), Episode total: 4
+    智能体位置: [('usv_0', '(273,3136)'), ('usv_1', '(269,4161)'), ('usv_2', '(335,5191)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.3775865159413465), 'usv_1': np.float64(3.4725762729621286)}
+    Episode time: 128.6s, Time penalty=-0.05
+------------------------------------------------------------
+Episode 10 Summary:
+  Total Reward: 30342.5
+  Targets Detected: 4/24 (12.5%)
+  Steps: 2025
+  Episode Time: 202.5s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 14.98
+
+==================================================
+MADDPG TRAINING PROGRESS - Episode 10
+==================================================
+Last 10 episodes average reward: 35673.1
+Last 10 episodes average detections: 5.7
+Best episode reward so far: 58216.3
+Best detection count so far: 9
+Buffer size: 27739
+==================================================
+
+    [Curriculum] Medium mode: 目标类型平衡, 速度提升
+--- Episode 11 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 28000...
+    MADDPG UPDATE finished.
+    Step 28000, Episode Steps: 261, Avg Reward: -2.168, Episode Reward: -565.8
+    检测进度: 1/15 (6.7%), Episode total: 1
+    智能体位置: [('usv_0', '(228,3128)'), ('usv_1', '(225,4129)'), ('usv_2', '(240,5129)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6829199479289934), 'usv_1': np.float64(-1.5811427605023889)}
+    Episode time: 26.1s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 29000...
+    MADDPG UPDATE finished.
+    Step 29000, Episode Steps: 1261, Avg Reward: 0.340, Episode Reward: 428.3
+    检测进度: 2/33 (6.1%), Episode total: 2
+    智能体位置: [('usv_0', '(270,3129)'), ('usv_1', '(261,4163)'), ('usv_2', '(343,5139)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.32774559980487317), 'usv_1': np.float64(-0.577447566180144)}
+    Episode time: 126.1s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.04617675 -0.10645329] (agent usv_0)
+    MADDPG UPDATING at time_step 30000...
+    MADDPG UPDATE finished.
+    Step 30000, Episode Steps: 2261, Avg Reward: 7.272, Episode Reward: 16442.4
+    检测进度: 4/61 (6.6%), Episode total: 5
+    智能体位置: [('usv_0', '(306,3093)'), ('usv_1', '(260,4205)'), ('usv_2', '(429,5183)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.3423500157305863), 'usv_1': np.float64(1.4206241658963914)}
+    Episode time: 226.1s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 11 Summary:
+  Total Reward: 32407.4
+  Targets Detected: 8/90 (7.8%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 10.80
+--- Episode 12 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 31000...
+    MADDPG UPDATE finished.
+    Step 31000, Episode Steps: 260, Avg Reward: -4.372, Episode Reward: -1136.7
+    检测进度: 0/9 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(227,3130)'), ('usv_1', '(231,4128)'), ('usv_2', '(245,5136)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6776989197714227), 'usv_1': np.float64(-1.5803941475768233)}
+    Episode time: 26.0s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 32000...
+    MADDPG UPDATE finished.
+    Step 32000, Episode Steps: 1260, Avg Reward: 5.801, Episode Reward: 7309.1
+    检测进度: 1/25 (4.0%), Episode total: 2
+    智能体位置: [('usv_0', '(276,3134)'), ('usv_1', '(293,4107)'), ('usv_2', '(323,5181)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3295920664928569), 'usv_1': np.float64(2.4263426430875015)}
+    Episode time: 126.0s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 33000...
+    MADDPG UPDATE finished.
+    Step 33000, Episode Steps: 2260, Avg Reward: 11.691, Episode Reward: 26422.0
+    检测进度: 4/41 (9.8%), Episode total: 6
+    智能体位置: [('usv_0', '(292,3107)'), ('usv_1', '(332,4126)'), ('usv_2', '(345,5286)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.3812977929630708), 'usv_1': np.float64(3.4319031437748277)}
+    Episode time: 226.0s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 12 Summary:
+  Total Reward: 39639.7
+  Targets Detected: 6/52 (7.7%)
+  Steps: 2912
+  Episode Time: 291.2s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 13.61
+--- Episode 13 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 34000...
+    MADDPG UPDATE finished.
+    Step 34000, Episode Steps: 348, Avg Reward: 4.810, Episode Reward: 1673.9
+    检测进度: 2/12 (16.7%), Episode total: 2
+    智能体位置: [('usv_0', '(226,3127)'), ('usv_1', '(225,4126)'), ('usv_2', '(240,5135)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.316832445460478), 'usv_1': np.float64(0.4172183049752034)}
+    Episode time: 34.8s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.15544503  0.00591581] (agent usv_0)
+    MADDPG UPDATING at time_step 35000...
+    MADDPG UPDATE finished.
+    Step 35000, Episode Steps: 1348, Avg Reward: 9.731, Episode Reward: 13117.4
+    检测进度: 2/42 (4.8%), Episode total: 2
+    智能体位置: [('usv_0', '(249,3105)'), ('usv_1', '(281,4140)'), ('usv_2', '(329,5177)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.325855158305293), 'usv_1': np.float64(1.4234665058307368)}
+    Episode time: 134.8s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 36000...
+    MADDPG UPDATE finished.
+    Step 36000, Episode Steps: 2348, Avg Reward: 13.969, Episode Reward: 32799.0
+    检测进度: 5/72 (6.9%), Episode total: 6
+    智能体位置: [('usv_0', '(238,3059)'), ('usv_1', '(298,4186)'), ('usv_2', '(362,5273)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.175967023651297), 'usv_1': np.float64(-6.572823542834735)}
+    Episode time: 234.8s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 13 Summary:
+  Total Reward: 37287.9
+  Targets Detected: 7/79 (7.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 12.43
+--- Episode 14 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 37000...
+    MADDPG UPDATE finished.
+    Step 37000, Episode Steps: 347, Avg Reward: 5.462, Episode Reward: 1895.5
+    检测进度: 1/14 (7.1%), Episode total: 1
+    智能体位置: [('usv_0', '(225,3130)'), ('usv_1', '(225,4130)'), ('usv_2', '(250,5131)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.3230532815834337), 'usv_1': np.float64(-0.5828353433699557)}
+    Episode time: 34.7s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 38000...
+    MADDPG UPDATE finished.
+    Step 38000, Episode Steps: 1347, Avg Reward: 5.250, Episode Reward: 7072.2
+    检测进度: 3/33 (9.1%), Episode total: 3
+    智能体位置: [('usv_0', '(265,3112)'), ('usv_1', '(261,4140)'), ('usv_2', '(363,5149)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.3288315126600097), 'usv_1': np.float64(-0.576883418872059)}
+    Episode time: 134.7s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 39000...
+    MADDPG UPDATE finished.
+    Step 39000, Episode Steps: 2347, Avg Reward: 6.660, Episode Reward: 15630.1
+    检测进度: 1/56 (1.8%), Episode total: 3
+    智能体位置: [('usv_0', '(293,3055)'), ('usv_1', '(308,4183)'), ('usv_2', '(419,5207)')]...
+    Recent rewards sample: {'usv_0': np.float64(7.179304632217769), 'usv_1': np.float64(0.4248941701581139)}
+    Episode time: 234.7s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 14 Summary:
+  Total Reward: 18221.7
+  Targets Detected: 3/59 (1.7%)
+  Steps: 2526
+  Episode Time: 252.6s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 7.21
+--- Episode 15 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.00190558 -0.24920248] (agent usv_0)
+    MADDPG UPDATING at time_step 40000...
+    MADDPG UPDATE finished.
+    Step 40000, Episode Steps: 821, Avg Reward: 0.120, Episode Reward: 98.8
+    检测进度: 1/21 (4.8%), Episode total: 1
+    智能体位置: [('usv_0', '(252,3141)'), ('usv_1', '(254,4126)'), ('usv_2', '(308,5137)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.321688066420067), 'usv_1': np.float64(0.42323352015578664)}
+    Episode time: 82.1s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 41000...
+    MADDPG UPDATE finished.
+    Step 41000, Episode Steps: 1821, Avg Reward: 9.212, Episode Reward: 16774.3
+    检测进度: 2/41 (4.9%), Episode total: 3
+    智能体位置: [('usv_0', '(266,3101)'), ('usv_1', '(310,4125)'), ('usv_2', '(404,5200)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.361541082928246), 'usv_1': np.float64(1.4236514265776767)}
+    Episode time: 182.1s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 15 Summary:
+  Total Reward: 27355.0
+  Targets Detected: 4/51 (5.9%)
+  Steps: 2346
+  Episode Time: 234.6s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 11.66
+--- Episode 16 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 42000...
+    MADDPG UPDATE finished.
+    Step 42000, Episode Steps: 475, Avg Reward: 6.757, Episode Reward: 3209.4
+    检测进度: 2/11 (18.2%), Episode total: 2
+    智能体位置: [('usv_0', '(238,3130)'), ('usv_1', '(237,4133)'), ('usv_2', '(262,5135)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.3228686650319004), 'usv_1': np.float64(0.4210878526277373)}
+    Episode time: 47.5s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 43000...
+    MADDPG UPDATE finished.
+    Step 43000, Episode Steps: 1475, Avg Reward: 10.642, Episode Reward: 15696.7
+    检测进度: 2/24 (8.3%), Episode total: 2
+    智能体位置: [('usv_0', '(294,3108)'), ('usv_1', '(276,4158)'), ('usv_2', '(355,5147)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.337003576320683), 'usv_1': np.float64(0.4279423207467212)}
+    Episode time: 147.5s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 44000...
+    MADDPG UPDATE finished.
+    Step 44000, Episode Steps: 2475, Avg Reward: 8.040, Episode Reward: 19897.9
+    检测进度: 4/48 (8.3%), Episode total: 4
+    智能体位置: [('usv_0', '(328,3067)'), ('usv_1', '(322,4201)'), ('usv_2', '(432,5208)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.197370358846356), 'usv_1': np.float64(-6.566810965050783)}
+    Episode time: 247.5s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 16 Summary:
+  Total Reward: 24319.3
+  Targets Detected: 5/58 (8.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 8.10
+--- Episode 17 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.03873474 -0.12667077] (agent usv_0)
+    MADDPG UPDATING at time_step 45000...
+    MADDPG UPDATE finished.
+    Step 45000, Episode Steps: 474, Avg Reward: -3.586, Episode Reward: -1699.8
+    检测进度: 0/7 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(237,3127)'), ('usv_1', '(233,4129)'), ('usv_2', '(245,5145)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6803894634153067), 'usv_1': np.float64(-1.580175187918338)}
+    Episode time: 47.4s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 46000...
+    MADDPG UPDATE finished.
+    Step 46000, Episode Steps: 1474, Avg Reward: -0.485, Episode Reward: -714.6
+    检测进度: 2/36 (5.6%), Episode total: 2
+    智能体位置: [('usv_0', '(292,3087)'), ('usv_1', '(269,4137)'), ('usv_2', '(342,5214)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.34051434950614), 'usv_1': np.float64(3.4264761666482126)}
+    Episode time: 147.4s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 47000...
+    MADDPG UPDATE finished.
+    Step 47000, Episode Steps: 2474, Avg Reward: 9.035, Episode Reward: 22352.1
+    检测进度: 2/63 (3.2%), Episode total: 5
+    智能体位置: [('usv_0', '(301,3048)'), ('usv_1', '(281,4189)'), ('usv_2', '(385,5310)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.157827414151278), 'usv_1': np.float64(3.4219542519128083)}
+    Episode time: 247.4s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 17 Summary:
+  Total Reward: 27669.1
+  Targets Detected: 5/65 (3.1%)
+  Steps: 2719
+  Episode Time: 271.9s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 10.18
+--- Episode 18 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 48000...
+    MADDPG UPDATE finished.
+    Step 48000, Episode Steps: 755, Avg Reward: 2.941, Episode Reward: 2220.6
+    检测进度: 1/21 (4.8%), Episode total: 1
+    智能体位置: [('usv_0', '(264,3128)'), ('usv_1', '(246,4147)'), ('usv_2', '(278,5145)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.326304619486875), 'usv_1': np.float64(0.41908568748601693)}
+    Episode time: 75.5s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 49000...
+    MADDPG UPDATE finished.
+    Step 49000, Episode Steps: 1755, Avg Reward: 7.417, Episode Reward: 13017.1
+    检测进度: 2/38 (5.3%), Episode total: 2
+    智能体位置: [('usv_0', '(305,3104)'), ('usv_1', '(280,4192)'), ('usv_2', '(385,5202)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3442566164433547), 'usv_1': np.float64(0.42189222718181263)}
+    Episode time: 175.5s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.12259492 -0.22969141] (agent usv_0)
+    MADDPG UPDATING at time_step 50000...
+    MADDPG UPDATE finished.
+    Step 50000, Episode Steps: 2755, Avg Reward: 9.728, Episode Reward: 26800.3
+    检测进度: 4/63 (6.3%), Episode total: 4
+    智能体位置: [('usv_0', '(326,3047)'), ('usv_1', '(282,4245)'), ('usv_2', '(421,5287)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.205765968920737), 'usv_1': np.float64(-4.576749122356112)}
+    Episode time: 275.5s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 18 Summary:
+  Total Reward: 29714.8
+  Targets Detected: 6/69 (8.7%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 9.90
+--- Episode 19 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 51000...
+    MADDPG UPDATE finished.
+    Step 51000, Episode Steps: 754, Avg Reward: 5.871, Episode Reward: 4426.9
+    检测进度: 1/17 (5.9%), Episode total: 1
+    智能体位置: [('usv_0', '(250,3134)'), ('usv_1', '(249,4118)'), ('usv_2', '(259,5163)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3248145393277173), 'usv_1': np.float64(2.421033833392266)}
+    Episode time: 75.4s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 52000...
+    MADDPG UPDATE finished.
+    Step 52000, Episode Steps: 1754, Avg Reward: 16.654, Episode Reward: 29210.4
+    检测进度: 7/44 (15.9%), Episode total: 8
+    智能体位置: [('usv_0', '(287,3101)'), ('usv_1', '(292,4127)'), ('usv_2', '(300,5249)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.336049625729129), 'usv_1': np.float64(3.4222870393115077)}
+    Episode time: 175.4s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 53000...
+    MADDPG UPDATE finished.
+    Step 53000, Episode Steps: 2754, Avg Reward: 19.147, Episode Reward: 52729.5
+    检测进度: 8/71 (11.3%), Episode total: 10
+    智能体位置: [('usv_0', '(275,3059)'), ('usv_1', '(299,4171)'), ('usv_2', '(305,5361)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.146740039777521), 'usv_1': np.float64(1.4250491225086184)}
+    Episode time: 275.4s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 19 Summary:
+  Total Reward: 60535.6
+  Targets Detected: 12/80 (12.5%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 20.17
+--- Episode 20 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 54000...
+    MADDPG UPDATE finished.
+    Step 54000, Episode Steps: 753, Avg Reward: -3.629, Episode Reward: -2732.6
+    检测进度: 0/13 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(244,3104)'), ('usv_1', '(247,4140)'), ('usv_2', '(277,5158)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.66938628191663), 'usv_1': np.float64(-1.5781294365194656)}
+    Episode time: 75.3s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.00563765 -0.20950433] (agent usv_0)
+    MADDPG UPDATING at time_step 55000...
+    MADDPG UPDATE finished.
+    Step 55000, Episode Steps: 1753, Avg Reward: -0.242, Episode Reward: -424.3
+    检测进度: 1/33 (3.0%), Episode total: 1
+    智能体位置: [('usv_0', '(231,3070)'), ('usv_1', '(273,4174)'), ('usv_2', '(322,5250)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.087964802974823), 'usv_1': np.float64(-0.576891525452128)}
+    Episode time: 175.3s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 56000...
+    MADDPG UPDATE finished.
+    Step 56000, Episode Steps: 2753, Avg Reward: 4.028, Episode Reward: 11089.2
+    检测进度: 2/62 (3.2%), Episode total: 2
+    智能体位置: [('usv_0', '(206,3057)'), ('usv_1', '(264,4226)'), ('usv_2', '(313,5349)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.260914510050729), 'usv_1': np.float64(0.4244750455023658)}
+    Episode time: 275.3s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 20 Summary:
+  Total Reward: 17936.7
+  Targets Detected: 3/68 (4.4%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 5.98
+
+==================================================
+MADDPG TRAINING PROGRESS - Episode 20
+==================================================
+Last 10 episodes average reward: 31508.7
+Last 10 episodes average detections: 5.9
+Best episode reward so far: 60535.6
+Best detection count so far: 12
+Learning trend: Declining (31508.7 vs 35673.1)
+Buffer size: 50000
+==================================================
+
+--- Episode 21 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 57000...
+    MADDPG UPDATE finished.
+    Step 57000, Episode Steps: 752, Avg Reward: -3.590, Episode Reward: -2699.5
+    检测进度: 0/9 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(237,3112)'), ('usv_1', '(249,4121)'), ('usv_2', '(297,5145)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6783176053063115), 'usv_1': np.float64(-1.5809897922860399)}
+    Episode time: 75.2s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 58000...
+    MADDPG UPDATE finished.
+    Step 58000, Episode Steps: 1752, Avg Reward: 3.063, Episode Reward: 5366.2
+    检测进度: 3/32 (9.4%), Episode total: 3
+    智能体位置: [('usv_0', '(257,3073)'), ('usv_1', '(298,4136)'), ('usv_2', '(365,5230)')]...
+    Recent rewards sample: {'usv_0': np.float64(7.924371721590884), 'usv_1': np.float64(1.4227633130933275)}
+    Episode time: 175.2s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 59000...
+    MADDPG UPDATE finished.
+    Step 59000, Episode Steps: 2752, Avg Reward: 10.393, Episode Reward: 28601.1
+    检测进度: 6/60 (10.0%), Episode total: 6
+    智能体位置: [('usv_0', '(223,3046)'), ('usv_1', '(313,4177)'), ('usv_2', '(342,5307)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.128180338684279), 'usv_1': np.float64(1.4244765954295966)}
+    Episode time: 275.2s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 21 Summary:
+  Total Reward: 32803.2
+  Targets Detected: 6/65 (9.2%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 10.93
+--- Episode 22 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.09180134  0.06201668] (agent usv_0)
+    MADDPG UPDATING at time_step 60000...
+    MADDPG UPDATE finished.
+    Step 60000, Episode Steps: 751, Avg Reward: -3.571, Episode Reward: -2681.8
+    检测进度: 0/15 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(241,3128)'), ('usv_1', '(261,4129)'), ('usv_2', '(306,5140)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.6790914503149705), 'usv_1': np.float64(-1.5800444356128869)}
+    Episode time: 75.1s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 61000...
+    MADDPG UPDATE finished.
+    Step 61000, Episode Steps: 1751, Avg Reward: -3.222, Episode Reward: -5642.1
+    检测进度: 0/32 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(282,3113)'), ('usv_1', '(276,4158)'), ('usv_2', '(394,5170)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.42459609019119904), 'usv_1': np.float64(-0.577865503464419)}
+    Episode time: 175.1s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 22 Summary:
+  Total Reward: -5612.6
+  Targets Detected: 0/33 (0.0%)
+  Steps: 1801
+  Episode Time: 180.1s
+  Termination Reason: no_progress_180s
+  Average Reward/Step: -3.12
+--- Episode 23 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 62000...
+    MADDPG UPDATE finished.
+    Step 62000, Episode Steps: 950, Avg Reward: 5.512, Episode Reward: 5236.5
+    检测进度: 1/18 (5.6%), Episode total: 1
+    智能体位置: [('usv_0', '(260,3129)'), ('usv_1', '(269,4132)'), ('usv_2', '(302,5138)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.325120116854228), 'usv_1': np.float64(0.42053254182995303)}
+    Episode time: 95.0s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 63000...
+    MADDPG UPDATE finished.
+    Step 63000, Episode Steps: 1950, Avg Reward: 9.190, Episode Reward: 17919.5
+    检测进度: 2/43 (4.7%), Episode total: 2
+    智能体位置: [('usv_0', '(299,3123)'), ('usv_1', '(267,4184)'), ('usv_2', '(387,5173)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.336256648120755), 'usv_1': np.float64(1.4286297176467513)}
+    Episode time: 195.0s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 64000...
+    MADDPG UPDATE finished.
+    Step 64000, Episode Steps: 2950, Avg Reward: 12.025, Episode Reward: 35473.4
+    检测进度: 3/62 (4.8%), Episode total: 4
+    智能体位置: [('usv_0', '(321,3076)'), ('usv_1', '(249,4230)'), ('usv_2', '(468,5240)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.237065869274735), 'usv_1': np.float64(3.4204616112255826)}
+    Episode time: 295.0s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 23 Summary:
+  Total Reward: 36519.1
+  Targets Detected: 4/63 (4.8%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 12.17
+--- Episode 24 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.15511587 -0.09453185] (agent usv_0)
+    MADDPG UPDATING at time_step 65000...
+    MADDPG UPDATE finished.
+    Step 65000, Episode Steps: 949, Avg Reward: 7.762, Episode Reward: 7365.7
+    检测进度: 4/15 (26.7%), Episode total: 4
+    智能体位置: [('usv_0', '(253,3123)'), ('usv_1', '(250,4144)'), ('usv_2', '(312,5169)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.324219109754096), 'usv_1': np.float64(3.423423077215147)}
+    Episode time: 94.9s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 66000...
+    MADDPG UPDATE finished.
+    Step 66000, Episode Steps: 1949, Avg Reward: 13.505, Episode Reward: 26320.9
+    检测进度: 6/40 (15.0%), Episode total: 6
+    智能体位置: [('usv_0', '(296,3110)'), ('usv_1', '(273,4180)'), ('usv_2', '(380,5255)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.347880576058287), 'usv_1': np.float64(3.421158916740538)}
+    Episode time: 194.9s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 67000...
+    MADDPG UPDATE finished.
+    Step 67000, Episode Steps: 2949, Avg Reward: 17.502, Episode Reward: 51612.4
+    检测进度: 10/55 (18.2%), Episode total: 10
+    智能体位置: [('usv_0', '(290,3061)'), ('usv_1', '(254,4218)'), ('usv_2', '(388,5346)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.238353301069035), 'usv_1': np.float64(3.4205653279974726)}
+    Episode time: 294.9s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 24 Summary:
+  Total Reward: 52894.0
+  Targets Detected: 10/56 (17.9%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 17.63
+--- Episode 25 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 68000...
+    MADDPG UPDATE finished.
+    Step 68000, Episode Steps: 948, Avg Reward: 8.056, Episode Reward: 7637.4
+    检测进度: 3/22 (13.6%), Episode total: 3
+    智能体位置: [('usv_0', '(260,3102)'), ('usv_1', '(259,4137)'), ('usv_2', '(290,5175)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.335741227284817), 'usv_1': np.float64(3.4254357046868726)}
+    Episode time: 94.8s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 69000...
+    MADDPG UPDATE finished.
+    Step 69000, Episode Steps: 1948, Avg Reward: 15.961, Episode Reward: 31091.6
+    检测进度: 5/46 (10.9%), Episode total: 5
+    智能体位置: [('usv_0', '(263,3055)'), ('usv_1', '(285,4168)'), ('usv_2', '(344,5288)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.018272896225021), 'usv_1': np.float64(3.422703131114587)}
+    Episode time: 194.8s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.38812916 -0.16007004] (agent usv_0)
+    MADDPG UPDATING at time_step 70000...
+    MADDPG UPDATE finished.
+    Step 70000, Episode Steps: 2948, Avg Reward: 18.121, Episode Reward: 53420.2
+    检测进度: 5/65 (7.7%), Episode total: 5
+    智能体位置: [('usv_0', '(235,3033)'), ('usv_1', '(274,4221)'), ('usv_2', '(316,5381)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.309057218059653), 'usv_1': np.float64(-4.574949935890878)}
+    Episode time: 294.8s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 25 Summary:
+  Total Reward: 53538.5
+  Targets Detected: 5/67 (6.0%)
+  Steps: 2966
+  Episode Time: 296.6s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 18.05
+--- Episode 26 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 71000...
+    MADDPG UPDATE finished.
+    Step 71000, Episode Steps: 982, Avg Reward: -2.712, Episode Reward: -2663.0
+    检测进度: 0/25 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(252,3116)'), ('usv_1', '(258,4144)'), ('usv_2', '(304,5155)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3251686216194156), 'usv_1': np.float64(0.4197681998747609)}
+    Episode time: 98.2s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 72000...
+    MADDPG UPDATE finished.
+    Step 72000, Episode Steps: 1982, Avg Reward: 3.546, Episode Reward: 7028.0
+    检测进度: 2/36 (5.6%), Episode total: 2
+    智能体位置: [('usv_0', '(252,3067)'), ('usv_1', '(286,4171)'), ('usv_2', '(351,5253)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.93303926084439), 'usv_1': np.float64(-7.575212366768227)}
+    Episode time: 198.2s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 26 Summary:
+  Total Reward: 5642.3
+  Targets Detected: 2/41 (4.9%)
+  Steps: 2220
+  Episode Time: 222.0s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 2.54
+--- Episode 27 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 73000...
+    MADDPG UPDATE finished.
+    Step 73000, Episode Steps: 762, Avg Reward: 8.606, Episode Reward: 6557.4
+    检测进度: 3/23 (13.0%), Episode total: 3
+    智能体位置: [('usv_0', '(260,3138)'), ('usv_1', '(240,4132)'), ('usv_2', '(283,5145)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3240622948204568), 'usv_1': np.float64(0.41833842590393133)}
+    Episode time: 76.2s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 74000...
+    MADDPG UPDATE finished.
+    Step 74000, Episode Steps: 1762, Avg Reward: 13.179, Episode Reward: 23221.1
+    检测进度: 4/43 (9.3%), Episode total: 4
+    智能体位置: [('usv_0', '(320,3131)'), ('usv_1', '(293,4154)'), ('usv_2', '(346,5220)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.3402048201406647), 'usv_1': np.float64(1.4224206967237398)}
+    Episode time: 176.2s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.26156033  0.10660423] (agent usv_0)
+    MADDPG UPDATING at time_step 75000...
+    MADDPG UPDATE finished.
+    Step 75000, Episode Steps: 2762, Avg Reward: 15.945, Episode Reward: 44039.6
+    检测进度: 5/62 (8.1%), Episode total: 6
+    智能体位置: [('usv_0', '(371,3096)'), ('usv_1', '(329,4191)'), ('usv_2', '(349,5316)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.5501698203814254), 'usv_1': np.float64(3.4338252970004186)}
+    Episode time: 276.2s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 27 Summary:
+  Total Reward: 48933.6
+  Targets Detected: 6/69 (7.2%)
+  Steps: 2996
+  Episode Time: 299.6s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 16.33
+--- Episode 28 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 76000...
+    MADDPG UPDATE finished.
+    Step 76000, Episode Steps: 766, Avg Reward: 10.347, Episode Reward: 7925.8
+    检测进度: 2/28 (7.1%), Episode total: 2
+    智能体位置: [('usv_0', '(244,3126)'), ('usv_1', '(264,4132)'), ('usv_2', '(290,5139)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.321538976815294), 'usv_1': np.float64(1.4201315075370755)}
+    Episode time: 76.6s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 77000...
+    MADDPG UPDATE finished.
+    Step 77000, Episode Steps: 1766, Avg Reward: 17.170, Episode Reward: 30322.1
+    检测进度: 6/43 (14.0%), Episode total: 6
+    智能体位置: [('usv_0', '(273,3087)'), ('usv_1', '(297,4167)'), ('usv_2', '(379,5156)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.438655148117396), 'usv_1': np.float64(3.422852738916041)}
+    Episode time: 176.6s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 78000...
+    MADDPG UPDATE finished.
+    Step 78000, Episode Steps: 2766, Avg Reward: 20.262, Episode Reward: 56046.0
+    检测进度: 7/60 (11.7%), Episode total: 8
+    智能体位置: [('usv_0', '(278,3024)'), ('usv_1', '(288,4212)'), ('usv_2', '(479,5218)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.298402453483224), 'usv_1': np.float64(3.42843105550857)}
+    Episode time: 276.6s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 28 Summary:
+  Total Reward: 61847.6
+  Targets Detected: 8/62 (11.3%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 20.61
+--- Episode 29 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 79000...
+    MADDPG UPDATE finished.
+    Step 79000, Episode Steps: 765, Avg Reward: 8.415, Episode Reward: 6437.6
+    检测进度: 3/15 (20.0%), Episode total: 3
+    智能体位置: [('usv_0', '(249,3109)'), ('usv_1', '(233,4145)'), ('usv_2', '(286,5157)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.3251733185123307), 'usv_1': np.float64(0.4181433397108889)}
+    Episode time: 76.5s, Time penalty=-0.1
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.07637835 -0.05726531] (agent usv_0)
+    MADDPG UPDATING at time_step 80000...
+    MADDPG UPDATE finished.
+    Step 80000, Episode Steps: 1765, Avg Reward: 13.463, Episode Reward: 23761.6
+    检测进度: 2/33 (6.1%), Episode total: 3
+    智能体位置: [('usv_0', '(244,3061)'), ('usv_1', '(257,4172)'), ('usv_2', '(348,5228)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.922234139629966), 'usv_1': np.float64(1.4218470584023155)}
+    Episode time: 176.5s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 29 Summary:
+  Total Reward: 24558.0
+  Targets Detected: 3/35 (5.7%)
+  Steps: 1801
+  Episode Time: 180.1s
+  Termination Reason: no_progress_147s
+  Average Reward/Step: 13.64
+--- Episode 30 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 81000...
+    MADDPG UPDATE finished.
+    Step 81000, Episode Steps: 964, Avg Reward: 10.171, Episode Reward: 9805.1
+    检测进度: 4/36 (11.1%), Episode total: 4
+    智能体位置: [('usv_0', '(248,3098)'), ('usv_1', '(251,4126)'), ('usv_2', '(297,5196)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.329646000400523), 'usv_1': np.float64(1.4191792363371447)}
+    Episode time: 96.4s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 82000...
+    MADDPG UPDATE finished.
+    Step 82000, Episode Steps: 1964, Avg Reward: 16.852, Episode Reward: 33096.7
+    检测进度: 7/53 (13.2%), Episode total: 7
+    智能体位置: [('usv_0', '(242,3038)'), ('usv_1', '(293,4132)'), ('usv_2', '(277,5307)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.110923201694145), 'usv_1': np.float64(3.422397194770185)}
+    Episode time: 196.4s, Time penalty=-0.1
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 83000...
+    MADDPG UPDATE finished.
+    Step 83000, Episode Steps: 2964, Avg Reward: 19.022, Episode Reward: 56380.6
+    检测进度: 7/72 (9.7%), Episode total: 8
+    智能体位置: [('usv_0', '(216,3023)'), ('usv_1', '(291,4176)'), ('usv_2', '(206,5367)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.229255457552929), 'usv_1': np.float64(3.431155252550342)}
+    Episode time: 296.4s, Time penalty=-0.1
+------------------------------------------------------------
+Episode 30 Summary:
+  Total Reward: 57213.0
+  Targets Detected: 8/73 (9.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 19.06
+
+==================================================
+MADDPG TRAINING PROGRESS - Episode 30
+==================================================
+Last 10 episodes average reward: 36833.7
+Last 10 episodes average detections: 5.2
+Best episode reward so far: 61847.6
+Best detection count so far: 12
+Learning trend: Improving (36833.7 vs 31508.7)
+Buffer size: 50000
+==================================================
+
+    [Curriculum] Hard mode: 高速目标主导, 效率优先
+--- Episode 31 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 84000...
+    MADDPG UPDATE finished.
+    Step 84000, Episode Steps: 963, Avg Reward: 9.195, Episode Reward: 8854.4
+    检测进度: 3/27 (11.1%), Episode total: 3
+    智能体位置: [('usv_0', '(258,3130)'), ('usv_1', '(250,4149)'), ('usv_2', '(289,5137)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.277989029576478), 'usv_1': np.float64(3.3692346562210194)}
+    Episode time: 96.3s, Time penalty=-0.15
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.22577844 -0.1294704 ] (agent usv_0)
+    MADDPG UPDATING at time_step 85000...
+    MADDPG UPDATE finished.
+    Step 85000, Episode Steps: 1963, Avg Reward: 15.918, Episode Reward: 31247.1
+    检测进度: 5/44 (11.4%), Episode total: 5
+    智能体位置: [('usv_0', '(292,3108)'), ('usv_1', '(245,4188)'), ('usv_2', '(369,5173)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.289777354531532), 'usv_1': np.float64(3.369236722296935)}
+    Episode time: 196.3s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 86000...
+    MADDPG UPDATE finished.
+    Step 86000, Episode Steps: 2963, Avg Reward: 17.876, Episode Reward: 52968.0
+    检测进度: 7/64 (10.9%), Episode total: 8
+    智能体位置: [('usv_0', '(308,3063)'), ('usv_1', '(212,4187)'), ('usv_2', '(439,5240)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.135369353933921), 'usv_1': np.float64(3.3712045024079043)}
+    Episode time: 296.3s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 31 Summary:
+  Total Reward: 53885.0
+  Targets Detected: 8/65 (10.8%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 17.96
+--- Episode 32 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 87000...
+    MADDPG UPDATE finished.
+    Step 87000, Episode Steps: 962, Avg Reward: 11.016, Episode Reward: 10597.4
+    检测进度: 2/22 (9.1%), Episode total: 2
+    智能体位置: [('usv_0', '(254,3108)'), ('usv_1', '(254,4142)'), ('usv_2', '(283,5177)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.2765535370876053), 'usv_1': np.float64(0.3694391334338305)}
+    Episode time: 96.2s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 88000...
+    MADDPG UPDATE finished.
+    Step 88000, Episode Steps: 1962, Avg Reward: 14.437, Episode Reward: 28324.6
+    检测进度: 6/56 (10.7%), Episode total: 6
+    智能体位置: [('usv_0', '(286,3054)'), ('usv_1', '(292,4154)'), ('usv_2', '(291,5283)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.00762300983783), 'usv_1': np.float64(1.3771585168082079)}
+    Episode time: 196.2s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 89000...
+    MADDPG UPDATE finished.
+    Step 89000, Episode Steps: 2962, Avg Reward: 17.915, Episode Reward: 53063.7
+    检测进度: 10/102 (9.8%), Episode total: 10
+    智能体位置: [('usv_0', '(279,3010)'), ('usv_1', '(315,4197)'), ('usv_2', '(271,5370)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.249632407777131), 'usv_1': np.float64(1.3777436238542835)}
+    Episode time: 296.2s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 32 Summary:
+  Total Reward: 55078.7
+  Targets Detected: 11/105 (10.5%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 18.35
+--- Episode 33 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [0.28597639 0.20219329] (agent usv_0)
+    MADDPG UPDATING at time_step 90000...
+    MADDPG UPDATE finished.
+    Step 90000, Episode Steps: 961, Avg Reward: -4.183, Episode Reward: -4019.7
+    检测进度: 0/16 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(261,3118)'), ('usv_1', '(263,4149)'), ('usv_2', '(293,5183)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.7109159497000221), 'usv_1': np.float64(-1.6273514905272304)}
+    Episode time: 96.1s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 91000...
+    MADDPG UPDATE finished.
+    Step 91000, Episode Steps: 1961, Avg Reward: 6.445, Episode Reward: 12637.9
+    检测进度: 5/53 (9.4%), Episode total: 5
+    智能体位置: [('usv_0', '(276,3074)'), ('usv_1', '(288,4186)'), ('usv_2', '(272,5283)')]...
+    Recent rewards sample: {'usv_0': np.float64(7.872660929526818), 'usv_1': np.float64(1.372431491633645)}
+    Episode time: 196.1s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 92000...
+    MADDPG UPDATE finished.
+    Step 92000, Episode Steps: 2961, Avg Reward: 9.974, Episode Reward: 29532.3
+    检测进度: 8/81 (9.9%), Episode total: 8
+    智能体位置: [('usv_0', '(264,3033)'), ('usv_1', '(288,4233)'), ('usv_2', '(228,5363)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.274502896061858), 'usv_1': np.float64(-6.625636180178832)}
+    Episode time: 296.1s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 33 Summary:
+  Total Reward: 29782.3
+  Targets Detected: 8/81 (9.9%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 9.92
+--- Episode 34 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 93000...
+    MADDPG UPDATE finished.
+    Step 93000, Episode Steps: 960, Avg Reward: 15.383, Episode Reward: 14767.7
+    检测进度: 4/47 (8.5%), Episode total: 4
+    智能体位置: [('usv_0', '(240,3101)'), ('usv_1', '(254,4149)'), ('usv_2', '(276,5200)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.274117963682539), 'usv_1': np.float64(1.3694832027134045)}
+    Episode time: 96.0s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 94000...
+    MADDPG UPDATE finished.
+    Step 94000, Episode Steps: 1960, Avg Reward: 16.608, Episode Reward: 32552.6
+    检测进度: 3/80 (3.8%), Episode total: 5
+    智能体位置: [('usv_0', '(295,3077)'), ('usv_1', '(268,4198)'), ('usv_2', '(270,5328)')]...
+    Recent rewards sample: {'usv_0': np.float64(7.9357324695695475), 'usv_1': np.float64(-6.621890835105644)}
+    Episode time: 196.0s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 34 Summary:
+  Total Reward: 36361.4
+  Targets Detected: 7/95 (4.2%)
+  Steps: 2490
+  Episode Time: 249.0s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 14.60
+--- Episode 35 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.16722735 -0.02168509] (agent usv_0)
+    MADDPG UPDATING at time_step 95000...
+    MADDPG UPDATE finished.
+    Step 95000, Episode Steps: 470, Avg Reward: 4.976, Episode Reward: 2338.9
+    检测进度: 1/20 (5.0%), Episode total: 1
+    智能体位置: [('usv_0', '(231,3117)'), ('usv_1', '(235,4136)'), ('usv_2', '(260,5143)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.274328460314805), 'usv_1': np.float64(3.3709761047711337)}
+    Episode time: 47.0s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 96000...
+    MADDPG UPDATE finished.
+    Step 96000, Episode Steps: 1470, Avg Reward: 17.928, Episode Reward: 26354.2
+    检测进度: 3/57 (5.3%), Episode total: 5
+    智能体位置: [('usv_0', '(274,3074)'), ('usv_1', '(257,4169)'), ('usv_2', '(312,5231)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.871315346489898), 'usv_1': np.float64(3.369885038449871)}
+    Episode time: 147.0s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 35 Summary:
+  Total Reward: 34582.7
+  Targets Detected: 6/63 (6.3%)
+  Steps: 1801
+  Episode Time: 180.1s
+  Termination Reason: no_progress_123s
+  Average Reward/Step: 19.20
+--- Episode 36 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 97000...
+    MADDPG UPDATE finished.
+    Step 97000, Episode Steps: 669, Avg Reward: -3.096, Episode Reward: -2071.1
+    检测进度: 0/27 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(248,3131)'), ('usv_1', '(238,4138)'), ('usv_2', '(272,5150)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.27200903028102763), 'usv_1': np.float64(-0.6269592983813914)}
+    Episode time: 66.9s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 98000...
+    MADDPG UPDATE finished.
+    Step 98000, Episode Steps: 1669, Avg Reward: 13.329, Episode Reward: 22245.6
+    检测进度: 6/54 (11.1%), Episode total: 6
+    智能体位置: [('usv_0', '(292,3114)'), ('usv_1', '(270,4170)'), ('usv_2', '(338,5225)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.2854919090378036), 'usv_1': np.float64(3.370812776185148)}
+    Episode time: 166.9s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 99000...
+    MADDPG UPDATE finished.
+    Step 99000, Episode Steps: 2669, Avg Reward: 14.031, Episode Reward: 37447.8
+    检测进度: 8/75 (10.7%), Episode total: 9
+    智能体位置: [('usv_0', '(331,3095)'), ('usv_1', '(259,4224)'), ('usv_2', '(331,5327)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.298591610342627), 'usv_1': np.float64(1.3730732759515094)}
+    Episode time: 266.9s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 36 Summary:
+  Total Reward: 46960.7
+  Targets Detected: 12/95 (11.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 15.65
+--- Episode 37 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [0.09099535 0.02628697] (agent usv_0)
+    MADDPG UPDATING at time_step 100000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 100000, Episode Steps: 668, Avg Reward: 1.690, Episode Reward: 1129.1
+    检测进度: 1/23 (4.3%), Episode total: 1
+    智能体位置: [('usv_0', '(243,3128)'), ('usv_1', '(242,4137)'), ('usv_2', '(282,5146)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.2718706295866513), 'usv_1': np.float64(-0.6275172399555884)}
+    Episode time: 66.8s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 101000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 101000, Episode Steps: 1668, Avg Reward: 3.091, Episode Reward: 5156.5
+    检测进度: 1/50 (2.0%), Episode total: 1
+    智能体位置: [('usv_0', '(274,3105)'), ('usv_1', '(214,4154)'), ('usv_2', '(301,5253)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.284386521276802), 'usv_1': np.float64(-0.6307391020905049)}
+    Episode time: 166.8s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 37 Summary:
+  Total Reward: 5590.9
+  Targets Detected: 1/52 (1.9%)
+  Steps: 1801
+  Episode Time: 180.1s
+  Termination Reason: no_progress_136s
+  Average Reward/Step: 3.10
+--- Episode 38 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 102000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 102000, Episode Steps: 867, Avg Reward: 2.327, Episode Reward: 2017.1
+    检测进度: 1/28 (3.6%), Episode total: 1
+    智能体位置: [('usv_0', '(242,3105)'), ('usv_1', '(251,4138)'), ('usv_2', '(300,5147)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.276976256899954), 'usv_1': np.float64(3.3701994162696334)}
+    Episode time: 86.7s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 103000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 103000, Episode Steps: 1867, Avg Reward: 16.125, Episode Reward: 30105.5
+    检测进度: 9/71 (12.7%), Episode total: 9
+    智能体位置: [('usv_0', '(207,3073)'), ('usv_1', '(290,4169)'), ('usv_2', '(376,5208)')]...
+    Recent rewards sample: {'usv_0': np.float64(7.997309247531572), 'usv_1': np.float64(3.3742852287530543)}
+    Episode time: 186.7s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 104000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 104000, Episode Steps: 2867, Avg Reward: 12.683, Episode Reward: 36362.5
+    检测进度: 9/91 (9.9%), Episode total: 10
+    智能体位置: [('usv_0', '(203,3042)'), ('usv_1', '(298,4216)'), ('usv_2', '(408,5299)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.123307609828792), 'usv_1': np.float64(-6.621289842526091)}
+    Episode time: 286.7s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 38 Summary:
+  Total Reward: 38054.1
+  Targets Detected: 11/92 (10.9%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 12.68
+--- Episode 39 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.26565168  0.21741335] (agent usv_0)
+    MADDPG UPDATING at time_step 105000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 105000, Episode Steps: 866, Avg Reward: 17.997, Episode Reward: 15585.8
+    检测进度: 4/17 (23.5%), Episode total: 4
+    智能体位置: [('usv_0', '(252,3122)'), ('usv_1', '(244,4129)'), ('usv_2', '(291,5131)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.273976692353382), 'usv_1': np.float64(3.368605393956292)}
+    Episode time: 86.6s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 106000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 106000, Episode Steps: 1866, Avg Reward: 17.861, Episode Reward: 33328.9
+    检测进度: 5/34 (14.7%), Episode total: 5
+    智能体位置: [('usv_0', '(284,3096)'), ('usv_1', '(281,4156)'), ('usv_2', '(346,5211)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.324118925315158), 'usv_1': np.float64(1.3718747014933883)}
+    Episode time: 186.6s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 39 Summary:
+  Total Reward: 40179.7
+  Targets Detected: 5/46 (10.9%)
+  Steps: 2226
+  Episode Time: 222.6s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 18.05
+--- Episode 40 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 107000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 107000, Episode Steps: 640, Avg Reward: 4.068, Episode Reward: 2603.4
+    检测进度: 1/11 (9.1%), Episode total: 1
+    智能体位置: [('usv_0', '(237,3111)'), ('usv_1', '(254,4124)'), ('usv_2', '(257,5152)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.2758288648629661), 'usv_1': np.float64(1.3721935069932996)}
+    Episode time: 64.0s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 108000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 108000, Episode Steps: 1640, Avg Reward: 11.737, Episode Reward: 19248.3
+    检测进度: 5/42 (11.9%), Episode total: 5
+    智能体位置: [('usv_0', '(235,3069)'), ('usv_1', '(301,4104)'), ('usv_2', '(267,5260)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.868553919553452), 'usv_1': np.float64(3.3730862506895374)}
+    Episode time: 164.0s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 109000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 109000, Episode Steps: 2640, Avg Reward: 16.097, Episode Reward: 42496.5
+    检测进度: 6/69 (8.7%), Episode total: 8
+    智能体位置: [('usv_0', '(212,3027)'), ('usv_1', '(338,4104)'), ('usv_2', '(210,5330)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.038708973611351), 'usv_1': np.float64(-6.624136163280074)}
+    Episode time: 264.0s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 40 Summary:
+  Total Reward: 44697.1
+  Targets Detected: 9/80 (8.8%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 14.89
+
+==================================================
+MADDPG TRAINING PROGRESS - Episode 40
+==================================================
+Last 10 episodes average reward: 38517.3
+Last 10 episodes average detections: 7.8
+Best episode reward so far: 61847.6
+Best detection count so far: 12
+Learning trend: Improving (38517.3 vs 36833.7)
+Buffer size: 50000
+==================================================
+
+--- Episode 41 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.17353156 -0.18489871] (agent usv_0)
+    MADDPG UPDATING at time_step 110000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 110000, Episode Steps: 639, Avg Reward: -0.860, Episode Reward: -549.8
+    检测进度: 1/17 (5.9%), Episode total: 1
+    智能体位置: [('usv_0', '(225,3111)'), ('usv_1', '(242,4135)'), ('usv_2', '(265,5136)')]...
+    Recent rewards sample: {'usv_0': np.float64(3.2691850136442024), 'usv_1': np.float64(0.3786352923775671)}
+    Episode time: 63.9s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 111000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 111000, Episode Steps: 1639, Avg Reward: 7.542, Episode Reward: 12360.7
+    检测进度: 3/49 (6.1%), Episode total: 3
+    智能体位置: [('usv_0', '(228,3070)'), ('usv_1', '(289,4161)'), ('usv_2', '(394,5139)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.876358258485915), 'usv_1': np.float64(0.3737796896695511)}
+    Episode time: 163.9s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 41 Summary:
+  Total Reward: 16195.0
+  Targets Detected: 3/62 (4.8%)
+  Steps: 1899
+  Episode Time: 189.9s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 8.53
+--- Episode 42 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 112000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 112000, Episode Steps: 740, Avg Reward: 15.298, Episode Reward: 11320.4
+    检测进度: 8/27 (29.6%), Episode total: 8
+    智能体位置: [('usv_0', '(255,3127)'), ('usv_1', '(240,4119)'), ('usv_2', '(292,5153)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.274243711036616), 'usv_1': np.float64(1.3703387774782403)}
+    Episode time: 74.0s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 113000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 113000, Episode Steps: 1740, Avg Reward: 18.914, Episode Reward: 32910.0
+    检测进度: 12/56 (21.4%), Episode total: 13
+    智能体位置: [('usv_0', '(297,3105)'), ('usv_1', '(290,4118)'), ('usv_2', '(348,5221)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.31746387563655), 'usv_1': np.float64(1.3814641241890957)}
+    Episode time: 174.0s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 114000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 114000, Episode Steps: 2740, Avg Reward: 19.335, Episode Reward: 52977.5
+    检测进度: 13/78 (16.7%), Episode total: 17
+    智能体位置: [('usv_0', '(320,3063)'), ('usv_1', '(326,4138)'), ('usv_2', '(364,5330)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.03224226691611), 'usv_1': np.float64(1.3774057215011477)}
+    Episode time: 274.0s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 42 Summary:
+  Total Reward: 55680.9
+  Targets Detected: 17/83 (15.7%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 18.55
+--- Episode 43 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.05973549  0.00975447] (agent usv_0)
+    MADDPG UPDATING at time_step 115000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 115000, Episode Steps: 739, Avg Reward: 1.992, Episode Reward: 1471.9
+    检测进度: 1/20 (5.0%), Episode total: 1
+    智能体位置: [('usv_0', '(218,3111)'), ('usv_1', '(258,4137)'), ('usv_2', '(284,5127)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.26678512268343146), 'usv_1': np.float64(-0.624231642113844)}
+    Episode time: 73.9s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 116000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 116000, Episode Steps: 1739, Avg Reward: 10.049, Episode Reward: 17475.9
+    检测进度: 4/48 (8.3%), Episode total: 4
+    智能体位置: [('usv_0', '(208,3080)'), ('usv_1', '(297,4179)'), ('usv_2', '(338,5191)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.988567688104329), 'usv_1': np.float64(1.3730021264334842)}
+    Episode time: 173.9s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 117000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 117000, Episode Steps: 2739, Avg Reward: 13.853, Episode Reward: 37943.7
+    检测进度: 5/64 (7.8%), Episode total: 5
+    智能体位置: [('usv_0', '(207,3070)'), ('usv_1', '(319,4222)'), ('usv_2', '(317,5295)')]...
+    Recent rewards sample: {'usv_0': np.float64(6.185133102756823), 'usv_1': np.float64(1.3753701164497034)}
+    Episode time: 273.9s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 43 Summary:
+  Total Reward: 42735.8
+  Targets Detected: 5/73 (6.8%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 14.24
+--- Episode 44 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 118000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 118000, Episode Steps: 738, Avg Reward: 10.769, Episode Reward: 7947.6
+    检测进度: 2/15 (13.3%), Episode total: 2
+    智能体位置: [('usv_0', '(235,3124)'), ('usv_1', '(258,4132)'), ('usv_2', '(306,5155)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.2693958897800441), 'usv_1': np.float64(2.37682606550996)}
+    Episode time: 73.8s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 119000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 119000, Episode Steps: 1738, Avg Reward: 15.990, Episode Reward: 27790.0
+    检测进度: 4/45 (8.9%), Episode total: 5
+    智能体位置: [('usv_0', '(241,3093)'), ('usv_1', '(318,4140)'), ('usv_2', '(375,5215)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.276461257353942), 'usv_1': np.float64(3.377283881028516)}
+    Episode time: 173.8s, Time penalty=-0.15
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [ 0.14174466 -0.03278172] (agent usv_0)
+    MADDPG UPDATING at time_step 120000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 120000, Episode Steps: 2738, Avg Reward: 17.377, Episode Reward: 47578.6
+    检测进度: 6/69 (8.7%), Episode total: 7
+    智能体位置: [('usv_0', '(209,3100)'), ('usv_1', '(301,4160)'), ('usv_2', '(384,5309)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.396179553568801), 'usv_1': np.float64(1.3730920044264572)}
+    Episode time: 273.8s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 44 Summary:
+  Total Reward: 52960.2
+  Targets Detected: 8/81 (8.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 17.65
+--- Episode 45 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 121000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 121000, Episode Steps: 737, Avg Reward: 4.758, Episode Reward: 3506.9
+    检测进度: 1/30 (3.3%), Episode total: 1
+    智能体位置: [('usv_0', '(235,3108)'), ('usv_1', '(254,4135)'), ('usv_2', '(294,5145)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.2773865838781072), 'usv_1': np.float64(-0.6306153798283247)}
+    Episode time: 73.7s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 122000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 122000, Episode Steps: 1737, Avg Reward: 9.999, Episode Reward: 17368.3
+    检测进度: 3/61 (4.9%), Episode total: 4
+    智能体位置: [('usv_0', '(224,3069)'), ('usv_1', '(290,4167)'), ('usv_2', '(379,5199)')]...
+    Recent rewards sample: {'usv_0': np.float64(5.867697186488725), 'usv_1': np.float64(1.3723044018930617)}
+    Episode time: 173.7s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 123000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 123000, Episode Steps: 2737, Avg Reward: 13.845, Episode Reward: 37893.3
+    检测进度: 4/92 (4.3%), Episode total: 6
+    智能体位置: [('usv_0', '(207,3071)'), ('usv_1', '(334,4200)'), ('usv_2', '(418,5295)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.10489009229734), 'usv_1': np.float64(-8.62398133700246)}
+    Episode time: 273.7s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 45 Summary:
+  Total Reward: 40499.0
+  Targets Detected: 7/98 (5.1%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 13.50
+--- Episode 46 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 124000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 124000, Episode Steps: 736, Avg Reward: 10.422, Episode Reward: 7670.8
+    检测进度: 3/22 (13.6%), Episode total: 3
+    智能体位置: [('usv_0', '(247,3128)'), ('usv_1', '(266,4128)'), ('usv_2', '(283,5140)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.275444418919065), 'usv_1': np.float64(1.3753146708771986)}
+    Episode time: 73.6s, Time penalty=-0.15
+------------------------------------------------------------
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.13604469  0.12465827] (agent usv_0)
+    MADDPG UPDATING at time_step 125000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 125000, Episode Steps: 1736, Avg Reward: 12.713, Episode Reward: 22069.9
+    检测进度: 4/52 (7.7%), Episode total: 4
+    智能体位置: [('usv_0', '(301,3113)'), ('usv_1', '(310,4158)'), ('usv_2', '(350,5223)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.2881442444350704), 'usv_1': np.float64(-8.624221153710893)}
+    Episode time: 173.6s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 126000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 126000, Episode Steps: 2736, Avg Reward: 7.355, Episode Reward: 20123.9
+    检测进度: 5/69 (7.2%), Episode total: 6
+    智能体位置: [('usv_0', '(316,3080)'), ('usv_1', '(302,4202)'), ('usv_2', '(389,5326)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.122211115040285), 'usv_1': np.float64(-8.617176426219762)}
+    Episode time: 273.6s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 46 Summary:
+  Total Reward: 20640.0
+  Targets Detected: 7/70 (8.6%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 6.88
+--- Episode 47 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 127000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 127000, Episode Steps: 735, Avg Reward: -0.611, Episode Reward: -449.0
+    检测进度: 2/23 (8.7%), Episode total: 2
+    智能体位置: [('usv_0', '(231,3110)'), ('usv_1', '(251,4114)'), ('usv_2', '(285,5147)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.284302366557121), 'usv_1': np.float64(-0.6303826576636946)}
+    Episode time: 73.5s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 128000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 128000, Episode Steps: 1735, Avg Reward: 8.277, Episode Reward: 14360.7
+    检测进度: 4/44 (9.1%), Episode total: 4
+    智能体位置: [('usv_0', '(202,3099)'), ('usv_1', '(279,4124)'), ('usv_2', '(355,5229)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.29035091170566), 'usv_1': np.float64(1.3743664751675722)}
+    Episode time: 173.5s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 129000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 129000, Episode Steps: 2735, Avg Reward: 12.595, Episode Reward: 34448.1
+    检测进度: 6/68 (8.8%), Episode total: 7
+    智能体位置: [('usv_0', '(202,3133)'), ('usv_1', '(305,4126)'), ('usv_2', '(333,5321)')]...
+    Recent rewards sample: {'usv_0': np.float64(4.2596418150613164), 'usv_1': np.float64(1.3738062283226524)}
+    Episode time: 273.5s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 47 Summary:
+  Total Reward: 42241.0
+  Targets Detected: 9/77 (9.1%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 14.08
+--- Episode 48 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [0.01427251 0.16969967] (agent usv_0)
+    MADDPG UPDATING at time_step 130000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 130000, Episode Steps: 734, Avg Reward: 5.539, Episode Reward: 4065.8
+    检测进度: 1/29 (3.4%), Episode total: 1
+    智能体位置: [('usv_0', '(251,3113)'), ('usv_1', '(257,4139)'), ('usv_2', '(276,5169)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.27812634480010157), 'usv_1': np.float64(1.3768044757653803)}
+    Episode time: 73.4s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 131000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 131000, Episode Steps: 1734, Avg Reward: 13.336, Episode Reward: 23124.4
+    检测进度: 3/56 (5.4%), Episode total: 4
+    智能体位置: [('usv_0', '(282,3074)'), ('usv_1', '(268,4179)'), ('usv_2', '(371,5250)')]...
+    Recent rewards sample: {'usv_0': np.float64(7.8781233037329805), 'usv_1': np.float64(-6.628182385063727)}
+    Episode time: 173.4s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 132000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 132000, Episode Steps: 2734, Avg Reward: 11.431, Episode Reward: 31251.5
+    检测进度: 6/84 (7.1%), Episode total: 8
+    智能体位置: [('usv_0', '(305,3033)'), ('usv_1', '(231,4203)'), ('usv_2', '(416,5336)')]...
+    Recent rewards sample: {'usv_0': np.float64(8.22054725063197), 'usv_1': np.float64(-6.6314722296223145)}
+    Episode time: 273.4s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 48 Summary:
+  Total Reward: 32317.0
+  Targets Detected: 8/95 (6.3%)
+  Steps: 3001
+  Episode Time: 300.1s
+  Termination Reason: time_limit_300s
+  Average Reward/Step: 10.77
+--- Episode 49 ---
+分配了6个智能体的专责区域
+    MADDPG UPDATING at time_step 133000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 133000, Episode Steps: 733, Avg Reward: -3.879, Episode Reward: -2843.6
+    检测进度: 0/30 (0.0%), Episode total: 0
+    智能体位置: [('usv_0', '(252,3121)'), ('usv_1', '(236,4149)'), ('usv_2', '(286,5163)')]...
+    Recent rewards sample: {'usv_0': np.float64(-0.7256535695731656), 'usv_1': np.float64(-1.6290021416517881)}
+    Episode time: 73.3s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 134000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 134000, Episode Steps: 1733, Avg Reward: -0.842, Episode Reward: -1459.0
+    检测进度: 1/50 (2.0%), Episode total: 1
+    智能体位置: [('usv_0', '(264,3094)'), ('usv_1', '(237,4188)'), ('usv_2', '(318,5257)')]...
+    Recent rewards sample: {'usv_0': np.float64(0.300998198960569), 'usv_1': np.float64(-0.6223717925718544)}
+    Episode time: 173.3s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 49 Summary:
+  Total Reward: 1798.3
+  Targets Detected: 1/62 (1.6%)
+  Steps: 2419
+  Episode Time: 241.9s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 0.74
+--- Episode 50 ---
+分配了6个智能体的专责区域
+    DEBUG: MADDPG actions shape = (6, 2)
+    DEBUG: Sample action = [-0.04043991 -0.02875793] (agent usv_0)
+    MADDPG UPDATING at time_step 135000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 135000, Episode Steps: 314, Avg Reward: 8.810, Episode Reward: 2766.4
+    检测进度: 3/12 (25.0%), Episode total: 3
+    智能体位置: [('usv_0', '(221,3127)'), ('usv_1', '(229,4131)'), ('usv_2', '(236,5135)')]...
+    Recent rewards sample: {'usv_0': np.float64(1.2654551904473306), 'usv_1': np.float64(0.37379434398128075)}
+    Episode time: 31.4s, Time penalty=-0.15
+------------------------------------------------------------
+    MADDPG UPDATING at time_step 136000...
+    MADDPG UPDATE finished.
+    Avg Actor Loss: -0.0594, Avg Critic Loss: 12.6965
+    Step 136000, Episode Steps: 1314, Avg Reward: 13.217, Episode Reward: 17367.3
+    检测进度: 3/45 (6.7%), Episode total: 5
+    智能体位置: [('usv_0', '(253,3104)'), ('usv_1', '(271,4150)'), ('usv_2', '(339,5160)')]...
+    Recent rewards sample: {'usv_0': np.float64(2.277699125587421), 'usv_1': np.float64(3.3785411035196535)}
+    Episode time: 131.4s, Time penalty=-0.15
+------------------------------------------------------------
+Episode 50 Summary:
+  Total Reward: 32645.2
+  Targets Detected: 6/84 (4.8%)
+  Steps: 2241
+  Episode Time: 224.1s
+  Termination Reason: no_progress_120s
+  Average Reward/Step: 14.57
+
+==================================================
+MADDPG TRAINING PROGRESS - Episode 50
+==================================================
+Last 10 episodes average reward: 33771.2
+Last 10 episodes average detections: 7.1
+Best episode reward so far: 61847.6
+Best detection count so far: 17
+Learning trend: Declining (33771.2 vs 38517.3)
+Buffer size: 50000
+==================================================
+
+
+=====================TRAINING COMPLETED=====================
+Total episodes: 50
+Best episode reward: 61847.6
+Final 10 episodes average: 33771.2
+Best detection performance: 17 targets
+Average detections (final 10): 7.1
+============================================================
+{"final_avg_reward": 33771.228693600424, "final_detection_rate": 7.1, "best_episode_reward": 61847.55996461036, "best_detection_count": 17, "total_episodes": 50}
+Simulation finished.
