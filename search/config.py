@@ -58,7 +58,7 @@ MADDPG_BUFFER_SIZE = 50000  # 经验回放缓冲区大小 (从100000降至50000)
 MADDPG_TAU = 0.005         # 软更新参数 (从0.01降至0.005，更稳定的目标网络更新)
 MADDPG_UPDATE_FREQ = 1     # 更新频率 (从2降至1，更频繁更新)
 GAMMA = 0.95               # 奖励折扣因子 (保持不变)
-LR_ACTOR = 5e-5            # Actor网络的学习率 (从1e-4降至5e-5)
+LR_ACTOR = 0.0005
 LR_CRITIC = 2e-4           # Critic网络的学习率 (从1e-3降至2e-4)
 
 # 新增：梯度裁剪参数
@@ -71,7 +71,7 @@ EPS_CLIP = 0.2             # PPO中的裁剪范围 (MADDPG中不使用)
 
 # --- 奖励函数权重（重新平衡，避免梯度爆炸）---
 # 核心目标：优先检测边界和高速目标
-REWARD_DETECT = 20.0       # 基础检测奖励（从200降至20）
+REWARD_DETECT = 200
 REWARD_BOUNDARY_TARGET = 30.0     # 边界目标额外奖励（从300降至30）
 REWARD_HIGH_SPEED_TARGET = 25.0   # 高速目标额外奖励（从250降至25）
 REWARD_EARLY_DETECTION = 15.0     # 早期发现奖励（从150降至15）
